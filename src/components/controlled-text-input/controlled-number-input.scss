@@ -1,0 +1,19 @@
+.smallPlaceholderText {
+    input[type=number]::placeholder{
+        font-size: 0.8rem;
+        opacity: 0.5;
+    }
+
+    :global(.cds--number__controls){
+        display: none;
+    }
+
+    :global(.cds--number) input[type="number"]{
+        min-width: 0;
+        padding-right: 0rem;
+    }
+
+    :global(.cds--number)  input[type="number"][data-invalid] {
+        padding-right: 0rem;
+    }
+  }

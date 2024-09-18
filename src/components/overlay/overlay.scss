@@ -20,6 +20,10 @@
   border-left: 1px solid $text-03;
 }
 
+.desktopOverlay:has(:global(.elevate-above-grid)) {
+  z-index: 9999;
+}
+
 .tabletOverlay {
   position: fixed;
   top: 0;
@@ -90,4 +94,8 @@
     padding: 0 0 0 0;
     overflow-y: auto;
   }
+}
+
+.component{
+  height: 100%;
 }

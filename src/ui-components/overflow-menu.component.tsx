@@ -3,14 +3,23 @@ import classNames from "classnames";
 import { useLayoutType } from "@openmrs/esm-framework";
 import styles from "./overflow-menu.scss";
 
+export interface OrderCustomOverflowMenuComponentRenderProps {
+  onMenuItemClick: () => void;
+}
+
 interface OrderCustomOverflowMenuComponentProps {
   menuTitle: React.ReactNode;
-  children: React.ReactNode;
+  hideMenuOnClick?: boolean;
+  render?: (
+    renderProps: OrderCustomOverflowMenuComponentRenderProps
+  ) => React.ReactNode;
+  children?: React.ReactNode;
+  menuDirection?: "top" | "bottom";
 }
 
 const OrderCustomOverflowMenuComponent: React.FC<
   OrderCustomOverflowMenuComponentProps
-> = ({ children, menuTitle }) => {
+> = ({ children, menuTitle, hideMenuOnClick, render, menuDirection }) => {
   const [showMenu, setShowMenu] = useState(false);
   const isTablet = useLayoutType() === "tablet";
   const wrapperRef = useRef(null);
@@ -34,6 +43,12 @@ const OrderCustomOverflowMenuComponent: React.FC<
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [wrapperRef]);
+
+  const onMenuItemClick = useCallback(() => {
+    if (hideMenuOnClick) {
+      setShowMenu(false);
+    }
+  }, [hideMenuOnClick]);
 
   return (
     <div
@@ -67,7 +82,7 @@ const OrderCustomOverflowMenuComponent: React.FC<
           }
         )}
         tabIndex={0}
-        data-floating-menu-direction="bottom"
+        data-floating-menu-direction={menuDirection ?? "bottom"}
         role="menu"
         aria-labelledby="custom-actions-overflow-menu-trigger"
         id="custom-actions-overflow-menu"
@@ -77,7 +92,8 @@ const OrderCustomOverflowMenuComponent: React.FC<
             "cds--overflow-menu-options--lg": isTablet,
           })}
         >
-          {children}
+          {render && render({ onMenuItemClick })}
+          {children && children}
         </ul>
         <span />
       </div>

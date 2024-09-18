@@ -19,6 +19,7 @@
         {
             "name": "laboratory-dashboard-link",
             "slot": "homepage-dashboard-slot",
+            "privilege": "App: labmanagement.dashboard",
             "component": "laboratoryDashboardLink",
             "meta": {
                 "name": "laboratory",
@@ -45,10 +46,6 @@
             "component": "laboratoryOrderComponent"
         },
         {
-            "name": "add-to-worklist-dialog",
-            "component": "addToWorklistDialog"
-        },
-        {
             "name": "results-summary",
             "component": "resultsSummaryWorkSpace"
         },
@@ -61,65 +58,12 @@
             "component": "sendEmailDialog"
         },
         {
-            "name": "review-item-dialog",
-            "component": "reviewItemDialog"
-        },
-        {
-            "name": "reject-order-dialog",
-            "component": "rejectOrderDialog"
-        },
-        {
-            "name": "worklist-panel-component",
-            "slot": "lab-panels-slot",
-            "component": "worklistComponent",
-            "meta": {
-                "name": "worklistPanelSlot",
-                "title": "Worklist"
-            }
-        },
-        {
-            "name": "review-panel-component",
-            "slot": "lab-panels-slot",
-            "component": "reviewComponent",
-            "meta": {
-                "name": "reviewPanelSlot",
-                "title": "Review"
-            }
-        },
-        {
-            "name": "approved-panel-component",
-            "slot": "lab-panels-slot",
-            "component": "approvedComponent",
-            "meta": {
-                "name": "approvedPanelSlot",
-                "title": "Approved"
-            }
-        },
-        {
-          "name": "rejected-panel-component",
-          "slot": "lab-panels-slot",
-          "component": "rejectedComponent",
-          "meta": {
-            "name": "rejectedPanelSlot",
-            "title": "Rejected"
-          }
-        },
-        {
             "name": "tests-ordered-tile-component",
             "slot": "lab-tiles-slot",
             "component": "testOrderedTileComponent",
             "meta": {
                 "name": "testsOrderedTileSlot",
                 "title": "Ordered tests"
-            }
-        },
-        {
-            "name": "referred-panel-component",
-            "slot": "lab-panels-slot",
-            "component": "referredTestComponent",
-            "meta": {
-                "name": "referredPanleSlot",
-                "title": "Referred Tests"
             }
         },
       {
@@ -162,11 +106,28 @@
             "name": "pick-lab-request-button",
             "component": "pickLabRequestButton",
             "slot": "order-actions-slot"
+        },        
+        {
+            "name": "lab-request-test-select-dialog",
+            "component": "labRequestTestSelectDialogComponent"
         },
         {
-            "name": "reject-order-button",
-            "component": "rejectOrderButton",
-            "slot": "order-actions-slot"
+            "name": "lab-approve-test-request-dialog",
+            "component": "approveTestRequestDialog"
+        }
+    ],
+    "modals": [
+        {
+            "name": "lab-register-sample-dialog",
+            "component": "registerSampleDialog"
+        },
+        {
+            "name": "lab-import-test-results-dialog",
+            "component": "importTestResultsDialog"
+        },
+        {
+            "name": "lab-use-existing-sample-dialog",
+            "component": "useExistingSampleDialog"
         }
     ]
 }

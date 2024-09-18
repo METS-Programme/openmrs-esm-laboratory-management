@@ -1,8 +1,7 @@
 import React, { AnchorHTMLAttributes, useMemo } from "react";
-import {
-  GroupMember,
-  Value,
-} from "../patient-laboratory-order-results.resource";
+
+import { Observation as GroupMember } from "../../api/types/Observation";
+import { Concept } from "../../api/types/concept/concept";
 import { useTranslation } from "react-i18next";
 import {
   DataTable,
@@ -29,7 +28,7 @@ interface ReferenceRangeProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
 
 interface ColorRangeIndicatorProps
   extends AnchorHTMLAttributes<HTMLAnchorElement> {
-  value: number | Value;
+  value: number | Concept;
   conceptUuid: string;
 }
 

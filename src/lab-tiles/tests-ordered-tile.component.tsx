@@ -1,27 +1,26 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import SummaryTile from "../summary-tiles/summary-tile.component";
-import { useGetOrdersWorklist } from "../work-list/work-list.resource";
-import { useOrderDate } from "../utils/functions";
+import { DashboardMetrics } from "../api/types/dashboard-metrics";
 
-const TestsOrderedTileComponent = () => {
+const TestsOrderedTileComponent = ({
+  dashboardMetrics,
+}: {
+  dashboardMetrics: DashboardMetrics;
+}) => {
   const { t } = useTranslation();
-
-  const { currentOrdersDate } = useOrderDate();
-  const { data } = useGetOrdersWorklist("", currentOrdersDate);
-
-  const filteredData = data?.filter(
-    (item) =>
-      item?.action === "NEW" &&
-      item?.dateStopped === null &&
-      item?.fulfillerStatus === null
-  );
 
   return (
     <SummaryTile
-      label={t("orders", "Orders")}
-      value={filteredData?.length}
+      label={t("acceptTests", "Accept Tests")}
+      value={dashboardMetrics?.testsToAccept ?? 0}
       headerLabel={t("testsOrdered", "Tests ordered")}
+      additionalKpis={[
+        {
+          value: dashboardMetrics?.testsForSampleCollection ?? 0,
+          label: t("collection", "Collection"),
+        },
+      ]}
     />
   );
 };

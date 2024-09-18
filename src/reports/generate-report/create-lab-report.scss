@@ -1,0 +1,43 @@
+@use '@carbon/styles/scss/spacing';
+@use '@carbon/styles/scss/type';
+@import '~@openmrs/esm-styleguide/src/vars';
+
+.reportContainer {
+  min-height: 15rem;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+  padding: 1rem;
+}
+.reportButton {
+  padding: 1rem
+}
+
+.sectionTitle {
+  @include type.type-style('heading-compact-02');
+  color: $text-02;
+  margin-bottom: spacing.$spacing-04;
+}
+
+.subTitle {
+  font-size: 14px;
+  margin-bottom: spacing.$spacing-04;
+}
+
+.modalBody {
+  padding-bottom: spacing.$spacing-05;
+}
+
+
+.errorDiv {
+  color: red;
+}
+
+.testOutComesField{
+  display: grid;
+  grid-template-columns: auto auto;
+
+  :global(input.cds--text-input){
+    background-color: #f4f4f4 !important;
+  }
+}

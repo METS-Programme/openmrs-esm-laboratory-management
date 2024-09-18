@@ -1,0 +1,45 @@
+.spacing{
+    margin: 0 16px
+  }
+
+  .select, .patient{
+    min-width: 8rem;
+  }
+
+  .patient{    
+    height: 2.9rem;
+    width: 24rem;
+  }
+
+  .testSelect{
+    min-width: 20rem;
+  }
+
+  .dateInput{
+    margin-top: 0.5rem;
+
+    :global(.cds--date-picker.cds--date-picker--single) :global(.cds--date-picker__input) {
+      width: unset;
+    }
+  }
+
+  .clearDate{
+    padding: 0;
+    margin: 0;
+    padding-inline-end: 0;
+    padding-inline-start: 0;
+    padding-block-end: 0;
+    padding-block-start: 0;
+    position: relative;
+    left: -3.5rem;
+    top: 0.65rem;
+    min-height: 0;
+    min-width: 0;
+    color: black;
+  }
+
+  .clearToggleMargin{
+    :global(.cds--toggle__label-text){
+      margin-bottom: 0;
+    }
+  }

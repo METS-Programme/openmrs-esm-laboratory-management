@@ -41,3 +41,14 @@
 .arrowIcon {
   fill: var(--cds-link-primary, #0f62fe) !important;
 }
+
+.kpis{
+  display: flex;
+  flex-direction: row;  
+  justify-content: space-between;
+}
+
+
+.kpis > div {
+  text-align: left;
+}

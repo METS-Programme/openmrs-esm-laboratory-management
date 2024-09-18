@@ -1,0 +1,15 @@
+@use '@carbon/styles/scss/spacing';
+@use '@carbon/styles/scss/type';
+@import "~@openmrs/esm-styleguide/src/vars";
+@import '../../root.scss';
+
+  .storageName{
+    padding-left: 0;
+    padding-right: 0;    
+  }
+
+  .storageLevel{
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.25rem;
+  }

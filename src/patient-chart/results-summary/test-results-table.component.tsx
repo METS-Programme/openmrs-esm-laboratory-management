@@ -17,10 +17,10 @@ import {
 import styles from "./results-summary.scss";
 import TestResultsChildren from "./test-children-results.component";
 import { formatDate, parseDate } from "@openmrs/esm-framework";
-import { Ob } from "../patient-laboratory-order-results.resource";
+import { Observation } from "../../api/types/Observation";
 
 interface TestOrdersProps {
-  obs: Ob[];
+  obs: { obs: Observation; completed: boolean; remarks: string }[];
 }
 
 const TestsResults: React.FC<TestOrdersProps> = ({ obs }) => {
@@ -35,24 +35,40 @@ const TestsResults: React.FC<TestOrdersProps> = ({ obs }) => {
   const formatDateColumn = (obsDatetime) =>
     formatDate(parseDate(obsDatetime), { time: false });
 
-  const obsList = obs?.filter((ob) => ob?.order?.type === "testorder");
+  const obsList = obs?.filter((ob) => ob?.obs.order?.type === "testorder");
 
   const obsRows = useMemo(
     () =>
       obsList.map((ob, index) => ({
-        id: ob.uuid,
-        order: { content: <span>{ob?.concept?.display}</span> },
-        date: { content: <span>{formatDateColumn(ob?.obsDatetime)}</span> },
-        result: {
+        id: ob.obs.uuid,
+        order: {
           content: (
             <span>
-              {ob[index]?.groupMembers === null
-                ? ob?.display
-                : ob?.value?.display}
+              {ob?.obs.concept?.display}{" "}
+              {ob?.completed ? "" : ` (${t("preliminary")})`}
             </span>
           ),
         },
+        date: { content: <span>{formatDateColumn(ob?.obs.obsDatetime)}</span> },
+        result: {
+          content: (
+            <div>
+              <span>
+                {ob[index]?.groupMembers === null
+                  ? ob?.obs.display
+                  : ob?.obs.value?.display ??
+                    ob?.obs.display ??
+                    ob?.obs.value?.display ??
+                    ob?.obs.value}
+              </span>
+              {ob.remarks && (
+                <div className={styles.testResultRemarks}>{ob.remarks}</div>
+              )}
+            </div>
+          ),
+        },
       })),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [obsList]
   );
 
@@ -87,10 +103,10 @@ const TestsResults: React.FC<TestOrdersProps> = ({ obs }) => {
                         className={styles.expandedActiveVisitRow}
                         colSpan={headers.length + 2}
                       >
-                        {obsList[index]?.groupMembers !== null &&
-                          obsList[index]?.groupMembers?.length > 0 && (
+                        {obsList[index]?.obs?.groupMembers !== null &&
+                          obsList[index]?.obs?.groupMembers?.length > 0 && (
                             <TestResultsChildren
-                              members={obsList[index]?.groupMembers}
+                              members={obsList[index]?.obs?.groupMembers}
                             />
                           )}
                       </TableExpandedRow>

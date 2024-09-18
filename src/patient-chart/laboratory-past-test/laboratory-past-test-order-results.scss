@@ -6,7 +6,27 @@
 .widgetCard {
     border: 1px solid colors.$gray-20;
     border-bottom: none;
+    .expandedActiveVisitRow table tbody td {
+        padding-left: 1rem !important;      
+    }    
+
+    .status{
+        white-space: nowrap;
+        a {text-decoration: none;}
+        strong{
+          font-size: 90%;
+        }
+    }
+    
+    :global(section.cds--table-toolbar) {
+      margin-left: 0;
+      margin-right: 0;
+    }
 }
+
+:global(.cds--data-table-content) {
+    overflow-x: unset;
+  }
 
 .headerBtnContainer {
     background-color: $ui-background;

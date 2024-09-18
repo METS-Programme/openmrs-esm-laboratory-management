@@ -1,0 +1,26 @@
+@use '@carbon/styles/scss/spacing';
+@use '@carbon/styles/scss/type';
+@import "~@openmrs/esm-styleguide/src/vars";
+@import '../../root.scss';
+
+
+.expandedRowAdditionInfo{
+    display: flex;
+    row-gap: 0.5rem;
+    column-gap: 1rem;
+    flex-wrap: wrap;
+    flex-grow: 0.5;
+    flex-basis: min-content;
+    align-content: flex-start;
+    margin-left: 2rem;
+}
+
+.expandedRowAdditionInfoTileField{
+  height: min-content;
+  white-space: wrap !important;
+  min-width: 7rem;
+}
+
+.expandedRowAdditionInfoTileFieldFillRow{
+  width: fit-content;
+}

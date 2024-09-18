@@ -1,0 +1,106 @@
+@use '@carbon/styles/scss/spacing';
+@use '@carbon/styles/scss/type';
+@import "~@openmrs/esm-styleguide/src/vars";
+
+
+.radioButton {
+  padding: spacing.$spacing-02 spacing.$spacing-02;
+  margin: spacing.$spacing-03 0;
+}
+
+.section {
+  margin: spacing.$spacing-03;
+}
+
+.sectionRow{
+    margin: spacing.$spacing-03;
+    display: flex;
+    flex-direction: row;
+    column-gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+    align-content: stretch;
+
+    .sectionField{
+      flex-grow: 1;
+      :global(.cds--text-input__readonly-icon){
+        display: none;
+      }
+    }
+
+    .numericInput{
+      width: 5rem;
+    }
+}
+
+.sectionTitle {
+  width: 10rem;
+}
+
+.modalBody {
+  padding-bottom: spacing.$spacing-05;
+}
+
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  align-content: stretch;
+}
+
+.specimenContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 10px;
+}
+
+.inputText {
+  display: flex;
+  align-items: center;
+}
+
+.errorText {
+  color: $danger;
+}
+
+.test{
+  display: flex;
+  justify-content: flex-start;
+  gap: 0.5rem;
+
+  :global(.cds--checkbox-wrapper){
+    max-width: max-content;
+  }
+}
+
+.storageSelected{
+  width: 80%;
+}
+
+.minModalBody{
+  min-height: 15rem;
+}
+
+
+.sampleInfo{  
+  display: flex;
+  row-gap: 0.5rem;
+  column-gap: 1rem;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  max-height: 20rem;
+  overflow-y: auto;
+
+}
+
+.sampleInfo > div{
+  height: min-content;
+  white-space: wrap !important;
+  width: fit-content;
+
+  p{
+      @include type.type-style("heading-01");
+  }
+}

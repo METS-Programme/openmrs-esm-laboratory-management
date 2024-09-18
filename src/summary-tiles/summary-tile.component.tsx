@@ -4,11 +4,17 @@ import { Tile, Button } from "@carbon/react";
 import { ArrowRight } from "@carbon/react/icons";
 import styles from "./summary-tile.scss";
 
+export interface KeyPerformanceIndicator {
+  value: any;
+  label: string;
+}
+
 interface SummaryTileProps {
   label: string;
   value: number;
   headerLabel: string;
   children?: React.ReactNode;
+  additionalKpis?: Array<KeyPerformanceIndicator>;
 }
 
 const SummaryTile: React.FC<SummaryTileProps> = ({
@@ -16,6 +22,7 @@ const SummaryTile: React.FC<SummaryTileProps> = ({
   value,
   headerLabel,
   children,
+  additionalKpis,
 }) => {
   const { t } = useTranslation();
 
@@ -28,9 +35,17 @@ const SummaryTile: React.FC<SummaryTileProps> = ({
         </div>
         <div></div>
       </div>
-      <div>
-        <label className={styles.totalsLabel}>{label}</label>
-        <p className={styles.totalsValue}>{value}</p>
+      <div className={styles.kpis}>
+        <div>
+          <label className={styles.totalsLabel}>{label}</label>
+          <p className={styles.totalsValue}>{value}</p>
+        </div>
+        {additionalKpis?.map((p) => (
+          <div>
+            <label className={styles.totalsLabel}>{p.label}</label>
+            <p className={styles.totalsValue}>{p.value}</p>
+          </div>
+        ))}
       </div>
     </Tile>
   );

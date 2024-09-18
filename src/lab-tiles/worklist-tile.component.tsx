@@ -1,29 +1,25 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import SummaryTile from "../summary-tiles/summary-tile.component";
-import { useLabTestsStats } from "../summary-tiles/laboratory-summary.resource";
-import { useOrderDate } from "../utils/functions";
-import { REFERINSTRUCTIONS } from "../constants";
+import { DashboardMetrics } from "../api/types/dashboard-metrics";
 
-const WorklistTileComponent = () => {
+const WorklistTileComponent = ({
+  dashboardMetrics,
+}: {
+  dashboardMetrics: DashboardMetrics;
+}) => {
   const { t } = useTranslation();
-  const { currentOrdersDate } = useOrderDate();
-
-  const { data } = useLabTestsStats("IN_PROGRESS", currentOrdersDate);
-
-  const filteredData = data?.filter(
-    (item) =>
-      item?.fulfillerStatus === "IN_PROGRESS" &&
-      item?.accessionNumber !== null &&
-      item?.dateStopped === null &&
-      item?.instructions !== REFERINSTRUCTIONS
-  );
-
   return (
     <SummaryTile
       label={t("inProgress", "In progress")}
-      value={filteredData?.length}
+      value={dashboardMetrics?.testsInProgress ?? 0}
       headerLabel={t("worklist", "Worklist")}
+      additionalKpis={[
+        {
+          value: dashboardMetrics?.testResultsRejected ?? 0,
+          label: t("rejectedResult", "Rejected Result"),
+        },
+      ]}
     />
   );
 };

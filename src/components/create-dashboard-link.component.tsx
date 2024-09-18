@@ -1,6 +1,7 @@
 import React, { useMemo } from "react";
 import { ConfigurableLink } from "@openmrs/esm-framework";
 import { BrowserRouter, useLocation } from "react-router-dom";
+import { MODULE_BASE_URL } from "../config/urls";
 
 export interface DashboardLinkConfig {
   name: string;
@@ -15,21 +16,9 @@ function DashboardExtension({
 }) {
   const { name, title } = dashboardLinkConfig;
   const location = useLocation();
-  const spaBasePath = `${window.spaBase}/home`;
-
-  const navLink = useMemo(() => {
-    const pathArray = location.pathname.split("/home");
-    const lastElement = pathArray[pathArray.length - 1];
-    return decodeURIComponent(lastElement);
-  }, [location.pathname]);
 
   return (
-    <ConfigurableLink
-      to={`${spaBasePath}/${name}`}
-      className={`cds--side-nav__link ${
-        navLink.match(name) && "active-left-nav-link"
-      }`}
-    >
+    <ConfigurableLink to={MODULE_BASE_URL} className={`cds--side-nav__link`}>
       {title}
     </ConfigurableLink>
   );

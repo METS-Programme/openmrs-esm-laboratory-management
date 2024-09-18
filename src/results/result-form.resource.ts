@@ -1,5 +1,6 @@
 import { openmrsFetch, restBaseUrl } from "@openmrs/esm-framework";
 import useSWR from "swr";
+import { ConceptReference } from "../api/types/concept/concept";
 
 export interface ConceptResponse {
   uuid: string;
@@ -147,32 +148,6 @@ export interface Link8 {
   rel: string;
   uri: string;
   resourceAlias: string;
-}
-
-export interface ConceptReference {
-  uuid: string;
-  display: string;
-  name: Name3;
-  datatype: Datatype2;
-  conceptClass: ConceptClass2;
-  set: boolean;
-  version: string;
-  retired: boolean;
-  names: Name4[];
-  descriptions: any[];
-  mappings: Mapping2[];
-  answers: Answer[];
-  setMembers: any[];
-  attributes: any[];
-  links: Link15[];
-  resourceVersion: string;
-  hiNormal?: number;
-  hiAbsolute?: number;
-  hiCritical?: number;
-  lowNormal?: number;
-  lowAbsolute?: number;
-  lowCritical?: number;
-  units?: string;
 }
 
 export interface Name3 {

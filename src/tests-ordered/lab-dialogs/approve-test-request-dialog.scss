@@ -1,0 +1,35 @@
+@use '@carbon/styles/scss/spacing';
+@use '@carbon/styles/scss/type';
+
+.section, .approvalItems {
+  margin: spacing.$spacing-03;
+}
+
+.sectionTitle {
+  margin-bottom: spacing.$spacing-04;
+}
+
+.modalBody {
+  padding-bottom: spacing.$spacing-05;
+}
+
+.approvalItems{  
+  display: flex;
+  row-gap: 0.5rem;
+  column-gap: 1rem;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  max-height: 20rem;
+  overflow-y: auto;
+
+}
+
+.approvalItems > div{
+  height: min-content;
+  white-space: wrap !important;
+  width: fit-content;
+
+  p{
+      @include type.type-style("heading-01");
+  }
+}

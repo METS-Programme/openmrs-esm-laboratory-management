@@ -2,29 +2,26 @@ import React from "react";
 import styles from "./result-form.scss";
 import { TextInput, Select, SelectItem } from "@carbon/react";
 import { useTranslation } from "react-i18next";
-import { ConceptReference } from "./result-form.resource";
 import { Controller } from "react-hook-form";
 import { min } from "rxjs/operators";
+import { Concept } from "@openmrs/esm-api/src/types";
+import { isCoded, isPanel, isTextOrNumeric } from "./result-field";
 
 interface ResultFormFieldProps {
-  concept: ConceptReference;
+  concept: Concept;
   control: any;
   register: any;
   errors: any;
 }
+
 const ResultFormField: React.FC<ResultFormFieldProps> = ({
   concept,
   control,
   errors,
 }) => {
   const { t } = useTranslation();
-  const isTextOrNumeric = (concept) =>
-    concept.datatype?.display === "Text" ||
-    concept.datatype?.display === "Numeric";
-  const isCoded = (concept) => concept.datatype?.display === "Coded";
-  const isPanel = (concept) => concept.setMembers?.length > 0;
 
-  const printValueRange = (concept: ConceptReference) => {
+  const printValueRange = (concept: Concept) => {
     if (concept?.datatype?.display === "Numeric") {
       const maxVal = Math.max(
         concept?.hiAbsolute,

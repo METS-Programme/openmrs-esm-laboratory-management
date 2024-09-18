@@ -41,17 +41,23 @@ const LaboratoryResultsTabs: React.FC<LaboratoryResultsTabsProps> = ({
           <TabPanels>
             <TabPanel>
               <div className={styles.panelContainer}>
-                <LaboratoryActiveTestOrderResults patientUuid={patientUuid} />
+                {selectedTab == 0 && (
+                  <LaboratoryActiveTestOrderResults patientUuid={patientUuid} />
+                )}
               </div>
             </TabPanel>
             <TabPanel>
               <div className={styles.panelContainer}>
-                <LaboratoryPastTestOrderResults patientUuid={patientUuid} />
+                {selectedTab == 1 && (
+                  <LaboratoryPastTestOrderResults patientUuid={patientUuid} />
+                )}
               </div>
             </TabPanel>
             <TabPanel>
               <div className={styles.panelContainer}>
-                <PatientLaboratoryReferalResults patientUuid={patientUuid} />
+                {selectedTab == 2 && (
+                  <PatientLaboratoryReferalResults patientUuid={patientUuid} />
+                )}
               </div>
             </TabPanel>
           </TabPanels>

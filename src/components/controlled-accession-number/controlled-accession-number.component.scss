@@ -1,0 +1,27 @@
+@use '@carbon/styles/scss/spacing';
+@use '@carbon/styles/scss/type';
+@import "~@openmrs/esm-styleguide/src/vars";
+
+  
+
+.generateBtn{    
+    margin: 0;
+    padding: 0;
+    height: 2.45rem;
+    width: 2.45rem;
+    align-items: center;
+    min-height: 0;
+}
+
+.generateContainer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    column-gap: 0;
+}
+
+
+.errorText{
+    color: $danger;
+    padding: 0;
+  }

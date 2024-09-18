@@ -1,20 +1,8 @@
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import styles from "./laboratory-order-referals.scss";
-import {
-  formatDate,
-  parseDate,
-  ErrorState,
-  showModal,
-  useConfig,
-} from "@openmrs/esm-framework";
-
+import { ErrorState, showModal } from "@openmrs/esm-framework";
+import { mutate } from "swr";
 import {
   DataTable,
   DataTableSkeleton,
@@ -39,125 +27,87 @@ import {
   InlineLoading,
 } from "@carbon/react";
 
-import {
-  Printer,
-  MailAll,
-  Checkmark,
-  SendAlt,
-  NotSent,
-  Edit,
-} from "@carbon/react/icons";
+import { MailAll, Add, Checkmark, SendAlt, NotSent } from "@carbon/react/icons";
+
 import TestsResults from "../results-summary/test-results-table.component";
-import { useReactToPrint } from "react-to-print";
-import PrintResultsSummary from "../results-summary/print-results-summary.component";
-import { OrderTagStyle, useGetPatientByUuid } from "../../utils/functions";
-import {
-  ResourceRepresentation,
-  Result,
-} from "../patient-laboratory-order-results.resource";
-import { useLaboratoryOrderResultsPages } from "../patient-laboratory-order-results-table.resource";
 import {
   CardHeader,
   launchPatientWorkspace,
 } from "@openmrs/esm-patient-common-lib";
-import { mutate } from "swr";
-import { REFERINSTRUCTIONS } from "../../constants";
+import { useLaboratoryConfig } from "../../hooks/useLaboratoryConfig";
+import { useTestRequestResource } from "../../api/test-request.resource";
+import {
+  formatAsPlainDateForTransfer,
+  formatDateTimeForDisplay,
+} from "../../utils/date-utils";
+import PrintTestRequestButton from "../../print/print-test-request-action-button.component";
+import TestNameTag from "../../components/test-request/test-name-tag";
+import { URL_LAB_REQUESTS_ALL_ABS_REQUEST_NO } from "../../config/urls";
+import { ResourceRepresentation } from "../../api/resource-filter-criteria";
 
 interface LaboratoryOrderReferalResultsProps {
   patientUuid: string;
-}
-
-interface EditReferralActionProps {
-  formUuid: string;
-  encounterUuid: string;
-}
-
-interface PrintProps {
-  encounter: Result;
 }
 
 const LaboratoryOrderReferalResults: React.FC<
   LaboratoryOrderReferalResultsProps
 > = ({ patientUuid }) => {
   const { t } = useTranslation();
-
+  const [searchTerm, setSearchTerm] = useState("");
   const {
-    enableSendingLabTestsByEmail,
-    laboratoryEncounterTypeUuid,
-    artCardEncounterTypeUuid,
-    laboratoryOrderTypeUuid,
-  } = useConfig();
+    laboratoryConfig: { enableSendingLabTestsByEmail },
+    configReady,
+  } = useLaboratoryConfig();
 
   const displayText = t(
     "referralLaboratoryTestsDisplayTextTitle",
     "Laboratory Referral Tests"
   );
+  const currentDateTime = new Date().getTime();
 
   const {
-    items,
-    currentPage,
-    pageSizes,
-    totalItems,
-    goTo,
-    currentPageSize,
-    setPageSize,
     isLoading,
+    items,
+    currentPageSize,
+    pageSizes,
+    currentPage,
+    setPageSize,
+    setCurrentPage,
+    totalCount,
     isError,
-  } = useLaboratoryOrderResultsPages({
+  } = useTestRequestResource({
     v: ResourceRepresentation.Full,
-    totalCount: true,
-    patientUuid: patientUuid,
-    laboratoryEncounterTypeUuid: laboratoryEncounterTypeUuid,
+    minActivatedDate: null,
+    maxActivatedDate: null,
+    referredOut: true,
+    includeTestItemSamples: false,
+    allTests: false,
+    includeTestItemTestResult: true,
+    testResultApprovals: true,
+    includeItemConcept: true,
+    patient: patientUuid,
   });
-
-  const sortedLabRequests = useMemo(() => {
-    return [...items]
-      ?.filter((item) => {
-        const { encounterType, orders } = item || {};
-        const { uuid: encounterTypeUuid } = encounterType || {};
-
-        // Check if the encounterType UUID matches either of the specified UUIDs
-
-        // Filter orders to only include those with the matching orderType UUID
-        const matchingOrders = orders?.filter(
-          (order) => order?.instructions === REFERINSTRUCTIONS
-        );
-
-        // Return the item only if it has matching encounterType and at least one matching order
-        return matchingOrders?.length > 0;
-      })
-      ?.sort((a, b) => {
-        const dateA = new Date(a.encounterDatetime);
-        const dateB = new Date(b.encounterDatetime);
-        return dateB.getTime() - dateA.getTime();
-      });
-  }, [items]);
-
-  const [searchTerm, setSearchTerm] = useState("");
-  const [laboratoryOrders, setLaboratoryOrders] = useState(sortedLabRequests);
-  const [initialTests, setInitialTests] = useState(sortedLabRequests);
 
   const handleChange = useCallback((event) => {
     const searchText = event?.target?.value?.trim().toLowerCase();
     setSearchTerm(searchText);
   }, []);
 
-  useEffect(() => {
-    if (!searchTerm) {
-      setLaboratoryOrders(initialTests);
-    } else {
-      const filteredItems = initialTests.filter((item) =>
-        item?.orders?.some((order) =>
-          order?.concept?.display.toLowerCase().includes(searchTerm)
-        )
-      );
-      setLaboratoryOrders(filteredItems);
-    }
-  }, [searchTerm, initialTests]);
-
-  useEffect(() => {
-    setInitialTests(sortedLabRequests);
-  }, [sortedLabRequests]);
+  const launchLabRequestForm = () => {
+    launchPatientWorkspace("patient-laboratory-referral-workspace", {
+      workspaceTitle: "Lab Request Form",
+      mutateForm: () => {
+        mutate((key) => true, undefined, {
+          revalidate: true,
+        });
+      },
+      /*formInfo: {
+        encounterUuid: "",
+        formUuid: "c6f3b5ad-b7eb-44ad-b212-fb26456e155b",
+      },*/
+      patientUuid: patientUuid,
+    });
+  };
 
   const EmailButtonAction: React.FC = () => {
     const launchSendEmailModal = useCallback(() => {
@@ -170,88 +120,13 @@ const LaboratoryOrderReferalResults: React.FC<
       <Button
         kind="ghost"
         size="sm"
-        onClick={(e) => launchSendEmailModal()}
+        onClick={() => launchSendEmailModal()}
         renderIcon={(props) => <MailAll size={16} {...props} />}
       />
     );
   };
 
-  const EditReferralAction: React.FC<EditReferralActionProps> = ({
-    formUuid,
-    encounterUuid,
-  }) => {
-    const launchForm = () => {
-      launchPatientWorkspace("patient-laboratory-referral-workspace", {
-        workspaceTitle: "Edit Referral Form",
-        mutateForm: () => {
-          mutate((key) => true, undefined, {
-            revalidate: true,
-          });
-        },
-        formInfo: {
-          encounterUuid: encounterUuid,
-          formUuid: formUuid,
-        },
-      });
-    };
-
-    return (
-      <Button
-        kind="ghost"
-        size="sm"
-        onClick={launchForm}
-        renderIcon={(props) => <Edit size={16} {...props} />}
-      />
-    );
-  };
-
-  const PrintButtonAction: React.FC<PrintProps> = ({ encounter }) => {
-    const { patient } = useGetPatientByUuid(encounter.patient.uuid);
-
-    const [isPrinting, setIsPrinting] = useState(false);
-
-    const contentToPrintRef = useRef(null);
-
-    const onBeforeGetContentResolve = useRef(null);
-
-    useEffect(() => {
-      if (onBeforeGetContentResolve.current) {
-        onBeforeGetContentResolve.current();
-      }
-    }, [isPrinting]);
-
-    const handlePrint = useReactToPrint({
-      content: () => contentToPrintRef.current,
-      onBeforeGetContent: () =>
-        new Promise((resolve) => {
-          onBeforeGetContentResolve.current = resolve;
-          setIsPrinting(true);
-        }),
-      onAfterPrint: () => {
-        onBeforeGetContentResolve.current = null;
-        setIsPrinting(false);
-      },
-    });
-
-    return (
-      <div>
-        <div ref={contentToPrintRef}>
-          <PrintResultsSummary
-            encounterResponse={encounter}
-            patient={patient}
-          />
-        </div>
-        <Button
-          kind="ghost"
-          size="sm"
-          onClick={handlePrint}
-          renderIcon={(props) => <Printer size={16} {...props} />}
-        />
-      </div>
-    );
-  };
-
-  const tableReferralHeaders = useMemo(
+  const tableHeaders = useMemo(
     () => [
       {
         id: 0,
@@ -260,58 +135,96 @@ const LaboratoryOrderReferalResults: React.FC<
       },
       { id: 1, header: t("tests", "Tests"), key: "orders" },
       { id: 2, header: t("location", "Location"), key: "location" },
-      { id: 3, header: t("status", "Status"), key: "status" },
+      { id: 3, header: t("request#", "Request #"), key: "status" },
       { id: 4, header: t("actions", "Action"), key: "actions" },
+      { id: 2, header: "details", key: "details" },
     ],
     [t]
   );
 
   const tableRows = useMemo(() => {
-    return laboratoryOrders?.map((entry, index) => ({
-      ...entry,
-      id: entry?.uuid,
-      orderDate: formatDate(parseDate(entry.encounterDatetime), {
-        mode: "standard",
-        time: true,
-      }),
-      orders: (
-        <>
-          {entry?.orders?.map((order) => {
-            if (
-              (order?.action === "NEW" ||
-                order?.action === "REVISE" ||
-                order?.action === "DISCONTINUE") &&
-              order.instructions === REFERINSTRUCTIONS
-            ) {
-              return (
-                <Tag
-                  style={OrderTagStyle(order)}
-                  role="tooltip"
-                  key={order?.uuid}
-                >
-                  {order?.display}
-                </Tag>
-              );
-            }
-          })}
-        </>
-      ),
-      location: entry?.location?.display,
-      status: "--",
-      actions: (
-        <div style={{ display: "flex" }}>
-          <EditReferralAction
-            formUuid={entry[index]?.form?.uuid}
-            encounterUuid={entry[index]?.uuid}
-          />
-          <PrintButtonAction encounter={entry} />
-          {enableSendingLabTestsByEmail && <EmailButtonAction />}
-        </div>
-      ),
-    }));
-  }, [enableSendingLabTestsByEmail, laboratoryOrders]);
+    return (
+      searchTerm
+        ? items
+            ?.map((p) => {
+              return {
+                ...p,
+                tests: p.tests?.filter(
+                  (x) =>
+                    x.testName?.toLowerCase()?.includes(searchTerm) ||
+                    x.testShortName?.toLowerCase()?.includes(searchTerm)
+                ),
+              };
+            })
+            .filter((p) => (p.tests?.length ?? 0) > 0)
+        : items
+    )
+      .sort((a, b) => {
+        const dateA = new Date(a.dateCreated);
+        const dateB = new Date(b.dateCreated);
+        return dateB.getTime() - dateA.getTime();
+      })
+      .map((entry) => {
+        const observartions = entry?.tests
+          ?.map((p) => {
+            return p.testResult?.obs
+              ? {
+                  obs: p.testResult?.obs,
+                  completed: p.testResult?.completed,
+                  remarks: p.testResult?.remarks,
+                }
+              : null;
+          })
+          .filter((p) => p);
 
-  if (isLoading) {
+        return {
+          ...entry,
+          id: entry.uuid,
+          orderDate: formatDateTimeForDisplay(entry.dateCreated),
+          orders: (
+            <>
+              {entry?.tests?.map((order) => {
+                return <TestNameTag testRequestItem={order} />;
+              })}
+            </>
+          ),
+
+          location: entry.atLocationName,
+          status: (
+            <div className={styles.status}>
+              <div>
+                <a
+                  href={URL_LAB_REQUESTS_ALL_ABS_REQUEST_NO(
+                    entry.requestNo,
+                    formatAsPlainDateForTransfer(entry.dateCreated)
+                  )}
+                  target="_blank"
+                >
+                  {entry.requestNo}
+                </a>
+              </div>
+            </div>
+          ),
+          actions: (
+            <div style={{ display: "flex" }}>
+              <PrintTestRequestButton
+                testRequestUuid={entry.uuid}
+                enableResults={entry?.tests?.some((p) => p.testResult)}
+              />
+              {enableSendingLabTestsByEmail && <EmailButtonAction />}
+            </div>
+          ),
+          details:
+            observartions?.length > 0 ? (
+              <TestsResults obs={observartions} />
+            ) : (
+              <></>
+            ),
+        };
+      });
+  }, [enableSendingLabTestsByEmail, items, searchTerm]);
+
+  if (isLoading || !configReady) {
     return <DataTableSkeleton role="progressbar" />;
   }
 
@@ -319,31 +232,29 @@ const LaboratoryOrderReferalResults: React.FC<
     return <ErrorState error={isError} headerTitle={"Error"} />;
   }
 
-  if (items?.length >= 0) {
+  if (tableRows?.length >= 0) {
     return (
       <div className={styles.widgetCard}>
-        <div className={styles.cardHeaderDiv}>
-          <CardHeader title={displayText}>
-            {isLoading ? (
-              <span>
-                <InlineLoading />
-              </span>
-            ) : null}
-          </CardHeader>
-        </div>
-        <DataTable
-          rows={tableRows}
-          headers={tableReferralHeaders}
-          useZebraStyles
-        >
-          {({
-            rows,
-            headers,
-            getHeaderProps,
-            getTableProps,
-            getRowProps,
-            onInputChange,
-          }) => (
+        <CardHeader title={displayText}>
+          {isLoading ? (
+            <span>
+              <InlineLoading />
+            </span>
+          ) : null}
+          <div className={styles.buttons}>
+            <Button
+              kind="ghost"
+              renderIcon={(props) => <Add size={16} {...props} />}
+              iconDescription="Launch lab Request"
+              onClick={launchLabRequestForm}
+            >
+              {t("add", "Add")}
+            </Button>
+          </div>
+        </CardHeader>
+
+        <DataTable rows={tableRows} headers={tableHeaders} useZebraStyles>
+          {({ rows, headers, getHeaderProps, getTableProps, getRowProps }) => (
             <TableContainer className={styles.tableContainer}>
               <TableToolbar
                 style={{
@@ -416,11 +327,14 @@ const LaboratoryOrderReferalResults: React.FC<
                 <TableHead>
                   <TableRow>
                     <TableExpandHeader />
-                    {headers.map((header) => (
-                      <TableHeader {...getHeaderProps({ header })}>
-                        {header.header}
-                      </TableHeader>
-                    ))}
+                    {headers.map(
+                      (header) =>
+                        !header.key.startsWith("details") && (
+                          <TableHeader {...getHeaderProps({ header })}>
+                            {header.header}
+                          </TableHeader>
+                        )
+                    )}
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -428,23 +342,22 @@ const LaboratoryOrderReferalResults: React.FC<
                     return (
                       <React.Fragment key={row.id}>
                         <TableExpandRow {...getRowProps({ row })}>
-                          {row.cells.map((cell) => (
-                            <TableCell key={cell.id}>
-                              {cell.value?.content ?? cell.value}
-                            </TableCell>
-                          ))}
+                          {row.cells.map(
+                            (cell) =>
+                              !cell?.info?.header.startsWith("details") && (
+                                <TableCell key={cell.id}>
+                                  {cell.value?.content ?? cell.value}
+                                </TableCell>
+                              )
+                          )}
                         </TableExpandRow>
-                        {row.isExpanded ? (
+                        {row.isExpanded &&
+                        row.cells[row.cells.length - 1].value ? (
                           <TableExpandedRow
                             className={styles.expandedActiveVisitRow}
                             colSpan={headers.length + 2}
                           >
-                            {sortedLabRequests[index]?.obs !== null &&
-                              sortedLabRequests[index]?.obs.length > 0 && (
-                                <TestsResults
-                                  obs={sortedLabRequests[index]?.obs}
-                                />
-                              )}{" "}
+                            {row.cells[row.cells.length - 1].value}
                           </TableExpandedRow>
                         ) : (
                           <TableExpandedRow
@@ -475,14 +388,10 @@ const LaboratoryOrderReferalResults: React.FC<
                 page={currentPage}
                 pageSize={currentPageSize}
                 pageSizes={pageSizes}
-                totalItems={totalItems}
-                onChange={({ pageSize, page }) => {
-                  if (pageSize !== currentPageSize) {
-                    setPageSize(pageSize);
-                  }
-                  if (page !== currentPage) {
-                    goTo(page);
-                  }
+                totalItems={totalCount ?? 0}
+                onChange={({ page, pageSize }) => {
+                  setCurrentPage(page);
+                  setPageSize(pageSize);
                 }}
                 className={styles.paginationOverride}
               />

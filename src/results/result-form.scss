@@ -1,5 +1,6 @@
 @use '@carbon/styles/scss/spacing';
 @use '@carbon/styles/scss/type';
+@import "~@openmrs/esm-styleguide/src/vars";
 
 
 section {
@@ -11,7 +12,7 @@ section {
 }
 
 .modalBody {
-  padding-bottom: spacing.$spacing-05;
+  margin-bottom: 0.5rem;
 }
 
 .textInput {
@@ -20,4 +21,39 @@ section {
 
 .errorDiv {
   color: red;
+}
+
+.testImportFieldSection{
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding-left: 0rem;
+  padding-right: 0.5rem;
+
+  .mainTestField{
+    :global(.cds--label){
+      border-bottom: double 2px black;
+      font-weight: bold;
+    }
+  }
+}
+
+.testImportFieldSection:last-child{
+  border-bottom: 0;
+  padding-bottom: 0rem;
+  margin-bottom: 0rem;
+  padding-left: 0rem;
+}
+
+.codedImportConfigValues{
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  .textInput{
+    margin-top: 0;
+  }
+
+  .codedImportConfigValuesSection{
+    grid-column: 1/-1
+  }
+
+  
 }

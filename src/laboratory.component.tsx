@@ -1,17 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { LaboratoryHeader } from "./header/laboratory-header.component";
 import LaboratorySummaryTiles from "./summary-tiles/laboratory-summary-tiles.component";
 import LaboratoryOrdersList from "./tests-ordered/laboratory-tabs.component";
 import Overlay from "./components/overlay/overlay.component";
+import { ILaboratoryNavigationProps } from "./header/laboratory-navigation";
+import { userHasAccess, useSession } from "@openmrs/esm-framework";
+import { APP_LABMANAGEMENT_DASHBOARD } from "./config/privileges";
 
-const Laboratory: React.FC = () => {
+interface LaboratoryProps extends ILaboratoryNavigationProps {}
+
+const Laboratory: React.FC<LaboratoryProps> = ({ onPageChanged }) => {
+  const [canViewDashboard, setCanViewDashboard] = useState(false);
+  const userSession = useSession();
+  useEffect(() => {
+    setCanViewDashboard(
+      userSession?.user &&
+        userHasAccess(APP_LABMANAGEMENT_DASHBOARD, userSession.user)
+    );
+  }, [userSession]);
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => onPageChanged({ showDateInHeader: true }), []);
   return (
-    <div className={`omrs-main-content`}>
-      <LaboratoryHeader />
+    <>
       <LaboratorySummaryTiles />
-      <LaboratoryOrdersList />
-      <Overlay />
-    </div>
+      {canViewDashboard && <LaboratoryOrdersList />}
+    </>
   );
 };
 

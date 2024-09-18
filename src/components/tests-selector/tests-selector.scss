@@ -1,0 +1,90 @@
+@use '@carbon/styles/scss/spacing';
+@use '@carbon/styles/scss/type';
+@import "~@openmrs/esm-styleguide/src/vars";
+
+
+.locationLabRequest{
+    padding: 0.5rem;
+    border: 1px solid $ui-03;
+    background-color: $ui-01;
+    margin: 0;
+
+    select, .selectedTestAltRow{
+        background-color: $ui-02 !important;
+    }
+}
+.labRequests{
+    margin-top: 0.5rem;
+    .labRequestsHeader{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        button{
+            min-height: 16px;
+            margin-top: 0;
+            margin-bottom: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+    }
+}
+
+.selectedTests{
+    display: flex;
+    flex-direction: column;
+    row-gap: 0rem;
+
+    .testLocation{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+
+        button{
+            min-height: 16px;
+            margin-top: 0;
+            margin-bottom: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+    }
+}
+
+.selectedTest:last-child{
+    border-bottom: 1px solid $ui-03;
+}
+
+.selectedTest{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid $ui-03;
+    padding-top: 0.5rem;
+    padding-bottom: 0.35rem;
+    padding-left: 0.25rem;
+    font-size: 0.85rem;
+
+
+
+    button{
+        min-height: 16px;
+        margin-top: 0;
+        margin-bottom: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .selectedTestName{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }    
+}
+
+.section{
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.25rem;
+}

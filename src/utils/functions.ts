@@ -1,12 +1,5 @@
-import {
-  getGlobalStore,
-  openmrsFetch,
-  restBaseUrl,
-} from "@openmrs/esm-framework";
-import dayjs from "dayjs";
+import { openmrsFetch, restBaseUrl } from "@openmrs/esm-framework";
 import useSWR from "swr";
-import { omrsDateFormat } from "../constants";
-import { useEffect, useState } from "react";
 
 export const trimVisitNumber = (visitNumber: string) => {
   if (!visitNumber) {
@@ -290,38 +283,3 @@ export function extractErrorMessagesFromResponse(errorObject) {
     errors.map((error) => error.message)
   );
 }
-
-// orders date globally
-const initialState = {
-  ordersDate: dayjs(new Date().setHours(0, 0, 0, 0)).format(omrsDateFormat),
-};
-
-export function getStartDate() {
-  return getGlobalStore<{ ordersDate: string | Date }>(
-    "ordersStartDate",
-    initialState
-  );
-}
-
-export function changeStartDate(updatedDate: string | Date) {
-  const store = getStartDate();
-  store.setState({
-    ordersDate: dayjs(new Date(updatedDate).setHours(0, 0, 0, 0)).format(
-      omrsDateFormat
-    ),
-  });
-}
-
-export const useOrderDate = () => {
-  const [currentOrdersDate, setCurrentOrdersDate] = useState(
-    initialState.ordersDate
-  );
-
-  useEffect(() => {
-    getStartDate().subscribe(({ ordersDate }) =>
-      setCurrentOrdersDate(ordersDate.toString())
-    );
-  }, []);
-
-  return { currentOrdersDate, setCurrentOrdersDate };
-};

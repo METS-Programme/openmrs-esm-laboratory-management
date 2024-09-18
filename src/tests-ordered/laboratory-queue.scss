@@ -29,6 +29,8 @@ title {
 .orderTabsContainer {
   height: 100%;
   width: 100%;
+  margin: 0;
+  margin-top: 0.5rem;
 
   :global(.cds--tab-content) {
     padding: 0 !important;
@@ -122,6 +124,10 @@ title {
   }
 }
 
+.fillContainer{
+  min-width: 100%;
+}
+
 .activePatientsTable tr:last-of-type {
   td {
     border-bottom: none;
@@ -194,6 +200,9 @@ title {
   border-top: 1px solid $ui-03;
   padding: 5rem 0;
 }
+:global(.cds--child-row-inner-container) .tileContainer{
+  padding: 1rem 0;
+}
 
 .tile {
   margin: auto;
@@ -214,4 +223,448 @@ title {
 
 .single-line-display {
   white-space: nowrap;
+}
+
+.worksheetItems{
+  th > :global(.cds--table-header-label) {    
+    padding-left: 0rem !important;
+    padding-right: 0rem !important;
+  }  
+  th, :global(.cds--data-table) tbody th{    
+    background-color: #e0e0e0 !important;
+  }
+
+  :global(table.cds--data-table) > tbody >
+  tr.worksheetItemTableExpandedRow > td, :global(table.cds--data-table) > tbody > tr.worksheetItemTableExpandedRow > td:hover {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    padding-bottom: 0rem;
+
+    .rowExpandedContent{
+      tbody tr  td {
+        padding-left: 0rem !important;
+      }
+    }
+
+    :global(.cds--data-table--zebra) tbody tr[data-parent-row]:nth-child(4n+3) td {
+      background-color: #f4f4f4 !important;
+    }
+  }
+
+  /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+      -moz-appearance: textfield;
+    }
+
+  .worksheetItemTableExpandedRow > td > div {
+    padding-bottom: 0rem;
+    background-color: white;
+  }
+
+  .noTestResultsRow{
+    :global(.cds--table-expand__button){
+      display: none;
+    }
+  }
+
+  .worksheetItemRowDetails{
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 0.25rem;
+    justify-content: flex-start;    
+    padding: 1rem;
+
+    .worksheetItemInput{
+      display: flex;
+      flex-wrap: wrap;
+      row-gap: 1rem;
+
+      .worksheetItemInlineExpField{
+        display: grid;
+        grid-template-columns: auto auto;
+
+        :global(input.cds--text-input){
+          background-color: #f4f4f4 !important;
+        }
+      }
+  }
+  }
+}
+
+
+
+.tableExpandedRow > td, .tableExpandedRow  > td:hover{
+    background-color: var(--brand-03) !important;
+    //background-color: #fff;
+    //background: -webkit-linear-gradient(rgba(255, 255, 255, 0.0473), rgba(0, 0, 0, 0.0473));
+    //background: -o-linear-gradient(rgba(255, 255, 255, 0.0473), rgba(0, 0, 0, 0.0473));
+    //background: -moz-linear-gradient(rgba(255, 255, 255, 0.0473), rgba(0, 0, 0, 0.0473));
+    //background: linear-gradient(rgba(255, 255, 255, 0.0473), rgba(0, 0, 0, 0.0473));
+
+  background-image: linear-gradient(to right, var(--brand-03), $brand-primary-50);
+  padding-left: 1rem !important;
+  white-space: normal !important;
+  .tableContainer {    
+    margin: 0;
+  }
+
+  .rowExpandedContent{
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 0.25rem;
+     td{
+      white-space: normal !important;
+
+      
+    .rowActions{
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      flex-wrap: nowrap;
+    }
+
+      .clearGhostButtonPadding{
+        white-space: nowrap !important;        
+        :global(.cds--overflow-menu){
+          display: inline-block;
+          padding-top: 0.15rem;
+        }
+      }
+
+      .clearGhostButtonPadding > button,
+      .clearGhostButtonPadding > :global(.cds--overflow-menu),
+       .clearGhostButtonPadding > :global(.cds--overflow-menu) > button{
+        padding: 0;
+        margin: 0;
+        padding-inline-end: 0;
+        padding-inline-start: 0;
+        min-width: 0;
+        min-height: 0;
+        width: auto;
+        height: auto;
+      }
+     }
+
+    .productiveHeading01 {          
+      color: $text-02;
+    }
+
+    .expandedRowAdditionInfo{
+        display: flex;
+        row-gap: 0.5rem;
+        column-gap: 1rem;
+        flex-wrap: wrap;
+        flex-grow: 0.5;
+        flex-basis: min-content;
+        align-content: flex-start;
+        border-left: 1px solid $ui-03;
+    }
+
+    .expandedRowAdditionInfoTileField{
+      height: min-content;
+      white-space: wrap !important;
+      min-width: 7rem;
+    }
+
+    .expandedRowAdditionInfoTileFieldFillRow{
+      width: fit-content;
+    }
+
+    :not(.worksheetItemTableExpandedRow) tbody tr  td {
+      padding-left: 1rem !important;
+    }
+    :not(.worksheetItems) tbody  tr:not(.cds--parent-row):nth-child(odd)  td {
+      background-color: #fff;
+    }
+    
+    :not(.worksheetItems) tbody  tr.highlightTestResult >  td {
+      background-color: #fffbce !important;
+    }
+
+    :global(.cds--data-table-container){
+      max-width: fit-content;
+    }
+  }
+} 
+
+.rowExpandedContent {
+  padding: 0.5rem 0.5rem 0.5rem 0;  
+ // margin-left: -0.15rem !important;
+}
+
+
+.progressBarThin{
+  margin: 0 1rem;
+  height: 0.1rem;
+  /*  #e0e0e0*/
+  :global(.cds--progress-bar__track)::after {
+    background-image: linear-gradient(90deg,var(--cds-interactive,#005d5d) 12.5%,transparent 0);
+  }
+}
+
+.tableToolbarContentHeaderText{
+  padding-left: 1rem;
+}
+
+.testRequestSampleTest{
+  display: block;
+  a{
+    text-decoration: none;
+  }
+}
+
+.testSampleReference{
+  display: inline-block;
+}
+
+.approvalRemarks{
+  font-size: 80%;
+}
+
+:global(.cds--child-row-inner-container) > section {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.errorDiv {
+  color: red;
+}
+
+.childTableTableSelectAll{
+  padding-left: 1rem !important;
+}
+
+.sp_hqp_shared_background {
+  background-color: #fff;
+  background: -webkit-linear-gradient(rgba(255, 255, 255, 0.0473), rgba(0, 0, 0, 0.0473));
+  background: -o-linear-gradient(rgba(255, 255, 255, 0.0473), rgba(0, 0, 0, 0.0473));
+  background: -moz-linear-gradient(rgba(255, 255, 255, 0.0473), rgba(0, 0, 0, 0.0473));
+  background: linear-gradient(rgba(255, 255, 255, 0.0473), rgba(0, 0, 0, 0.0473));
+}
+
+
+
+.avatar{  
+    width: 20px;
+    height: 20px;
+    font-size: 1rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    line-height: 1;
+    border-radius: 50%;
+    overflow: hidden;
+    user-select: none;
+
+}
+
+.avatarSuccess{
+  color: #fff;
+  background-color: #52c41a;
+}
+
+.avatarPending{
+  /*color: #1890ff;
+  background-color: #e6f7ff;*/
+  color: #f5f5f5;
+  background-color: #faad14;
+}
+
+.avatarDanger{
+  color: #fff;
+  background-color: #ff4d4f;
+}
+
+.avatarNoApproval{
+  color: #000000;
+  background-color: #f0f0f0;
+}
+
+.lastResultBy{  
+  border-bottom: 1px solid #f0f0f0;
+  margin-bottom: 0.25rem;
+}
+
+.listItems{
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  flex-grow: 1;
+
+  .listItem{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 0.5rem;
+
+    .approvalInfo{
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      padding-left: 0.5rem;
+
+      .approvalTitle{
+        display: flex;
+        align-items: center;
+        column-gap: 0.5rem;
+        width: 100%;
+      }
+
+      .approvalContent{
+        font-size: 90%;
+      }
+
+      
+    }
+  }
+}
+
+.italic{
+  font-style: italic;
+  font-size: 90%;
+}
+
+.worksheetTestFooter{
+  font-size: 75%;
+  font-style: italic;
+  padding-left: 0.5rem;
+}
+
+.labmgmt-filters {
+  
+  display: flex;
+  flex-wrap: nowraps;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.25rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  background-color: #f4f4f4;
+
+  .filterSearch{
+    height: 2.5rem;
+    margin-top: 0.5rem;
+    width: 100%;
+    max-width: 16rem;
+    background-color: $ui-02;
+    border-bottom: solid 1px #8d8d8d;
+
+    :global(input.cds--search-input){
+      height: 100%;
+    }
+  }
+
+  :global(.cds--list-box) {
+    border-bottom: none;
+    max-height: 3rem;
+    height: 100%;
+  }
+
+    :global(.cds--list-box__field) {
+      padding-right: 2.5rem !important;
+    }
+  
+
+  :global(.cds--search:nth-child(1).cds--search-magnifier) {
+    margin-left: 0.75rem !important;
+    margin-right: 0.75rem !important;
+  }
+
+  :global(.cds--search-input) {
+    border-bottom: none !important;
+  }
+
+  :global(.cds--multi-select__wrapper) {
+    padding: 0 0.3rem;
+    height: 2.5rem;
+    margin-top: 0.6rem;
+    width: 15rem;
+    :global(.cds--list-box__menu) {
+      width: 20rem;
+    }
+  }
+
+  :global(.cds--list-box) {
+    border-bottom: none;
+    max-height: 3rem;
+    height: 100%;
+  }
+
+  :global(.cds--list-box__field) {
+    padding-right: 2.5rem !important;
+  }
+}
+  
+.navigationButtons{
+  display: flex;
+  justify-content: flex-start; 
+  margin: 0.25rem 1rem; 
+}
+
+.navigationButton {
+  align-self: flex-end;
+  width: fit-content;
+}
+:global(.cds--data-table-container > div.cds--data-table-content > table > tbody > tr div.cds--child-row-inner-container  .cds--data-table-content .cds--data-table .cds--expandable-row > td)
+{
+
+	border-bottom: none !important;
+	box-shadow: none !important;  
+}
+
+:global(.cds--data-table-container > div.cds--data-table-content > table > tbody > tr div.cds--child-row-inner-container  .cds--data-table-content .cds--data-table > tbody > tr.cds--parent-row td){
+  padding-bottom: inherit;
+  box-shadow: none !important;  
+}
+
+.summary-tests-list{
+  border-top: solid 1px #e0e0e0;
+}
+
+.summary-tests-pending, .summary-tests-done{
+  font-size: 85%;
+  list-style: disclosure-closed;
+}
+.summary-tests-done{
+  font-weight: bold;
+}
+.summary-tests-done::after{
+  content: "\2714";
+  color: var(--brand-03);
+  font-size: 100%;
+  font-weight: bold;
+}
+
+.summary-tests-pending{
+  color:#3f0000;
+}
+
+.selectionPaddingClear > td:nth-child(3){
+  padding-left: 0.5rem;
+}
+
+.worksheetItemWrapper{
+  display: flex;
+   flex-wrap: wrap;
+   row-gap: 0.25rem;      
+}
+
+.worksheetItemWrapper > div:first-child{
+  flex-grow: 1;
+}
+.worksheetItemWrapper > section:last-child{
+  background-color: white;  
+  border-left: 1px solid $ui-03;
+  margin: 0;
+  padding: 0.5rem;
 }

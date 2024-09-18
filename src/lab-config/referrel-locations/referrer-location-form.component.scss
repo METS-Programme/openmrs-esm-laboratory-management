@@ -1,0 +1,62 @@
+@use '@carbon/styles/scss/spacing';
+@use '@carbon/styles/scss/type';
+@import "~@openmrs/esm-styleguide/src/vars";
+
+.modalBody {
+    overflow-y: visible;
+    :global(.cds--text-input), :global(.cds--list-box input[role=combobox]), :global(.cds--list-box input[type=text]),
+    :global(.cds--select-input), :global(.cds--text-area), :global(.cds--number > div.cds--number__input-wrapper > input[type=number]){
+        background-color: $ui-02;    
+    }
+}
+
+.section{
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.75rem;
+}
+
+.errorText {
+    color: $danger;
+}
+
+.patientSearch{
+    div[data-extension-slot-name] {
+        form {
+            :global(button.cds--search-close) {
+                height: 2rem;
+                padding: 0;
+            }
+        
+            :global(button.cds--btn--primary) {
+                height: 2rem;
+                min-height: 2rem;
+                padding-top: 0.35rem;
+                /* vertical-align: middle; */
+                padding: 0.35rem;
+            }
+        
+            :global(input.cds--search-input) {
+                height: 1rem;
+                padding: 0 0.5rem 0 3rem;
+                min-height: 2rem;
+            }
+        }
+        form + div {
+            button {
+                height: 4rem;
+                button {
+                    height: 1rem;
+                }
+            }
+        }
+    }    
+}
+
+.referOptions{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: 3rem;
+    flex-direction: row;
+}
