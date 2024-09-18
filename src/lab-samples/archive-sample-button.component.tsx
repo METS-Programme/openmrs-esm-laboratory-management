@@ -1,5 +1,5 @@
-import React from "react";
-import { Button } from "@carbon/react";
+import React, { useState } from "react";
+import { Button, InlineLoading } from "@carbon/react";
 import { useTranslation } from "react-i18next";
 import { closeOverlay, launchOverlay } from "../components/overlay/hook";
 import { Sample } from "../api/types/sample";
@@ -13,6 +13,11 @@ import { applyTestRequestAction } from "../api/test-request.resource";
 import { sample } from "rxjs/operators";
 import { handleMutate } from "../api/swr-revalidation";
 import { URL_API_SAMPLE } from "../config/urls";
+import { getSampleActivity } from "../api/sample-activity.resource";
+import { FetchResponse } from "@openmrs/esm-framework";
+import { PageableResult } from "../api/types/pageable-result";
+import { SampleActivity } from "../api/types/sample-activity";
+import { ResourceRepresentation } from "../api/resource-filter-criteria";
 
 interface ArchiveSampleButtonProps {
   data: Sample;
@@ -29,13 +34,30 @@ const ArchiveSampleButton: React.FC<ArchiveSampleButtonProps> = ({
     testRequestAction.records = [data.uuid];
     return applyTestRequestAction(testRequestAction);
   };
+  const [isLoadingLastActity, setIsLoadingLastActivity] = useState(false);
 
   const onCloseDialog = () => {
     handleMutate(URL_API_SAMPLE);
     closeOverlay();
   };
 
-  const onArchiveClick = () => {
+  const onArchiveClick = async () => {
+    let defaultThawCycles: number = null;
+    try {
+      setIsLoadingLastActivity(true);
+      let response: FetchResponse<PageableResult<SampleActivity>> =
+        await getSampleActivity({
+          sample: data.uuid,
+          limit: 1,
+          v: ResourceRepresentation.Default,
+        });
+      if (response?.data?.results?.length > 0) {
+        defaultThawCycles = response?.data?.results[0].thawCycles;
+      }
+    } catch (e) {
+    } finally {
+      setIsLoadingLastActivity(false);
+    }
     launchOverlay(
       t("laboratoryArchiveSample", "Archive Sample"),
       <StorageActionDialog
@@ -56,11 +78,20 @@ const ArchiveSampleButton: React.FC<ArchiveSampleButtonProps> = ({
           "Sample archived successfully"
         )}
         approvalDescription={""}
+        defaultThawCycles={defaultThawCycles}
       />
     );
   };
 
-  return (
+  return isLoadingLastActity ? (
+    <>
+      <InlineLoading
+        iconDescription="Loading"
+        description="Loading banner"
+        status="active"
+      />
+    </>
+  ) : (
     <Button
       className={className}
       kind="ghost"

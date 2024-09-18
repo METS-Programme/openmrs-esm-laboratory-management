@@ -65,6 +65,7 @@ interface StorageActionDialogProps {
   readonlyStorage?: boolean;
   multiSamples?: boolean;
   sampleInformation?: React.ReactNode;
+  defaultThawCycles?: number;
 }
 
 const StorageActionDialog: React.FC<StorageActionDialogProps> = ({
@@ -84,6 +85,7 @@ const StorageActionDialog: React.FC<StorageActionDialogProps> = ({
   readonlyStorage,
   multiSamples,
   sampleInformation,
+  defaultThawCycles,
 }) => {
   const { t } = useTranslation();
   const [isSaving, setIsSaving] = useState(false);
@@ -102,6 +104,9 @@ const StorageActionDialog: React.FC<StorageActionDialogProps> = ({
         specifyVolume: false,
         responsiblePersonUuid: session?.user?.uuid,
         actionDate: today(),
+        volume: sample?.volume,
+        volumeUnitUuid: sample?.volumeUnitUuid,
+        thawCycles: defaultThawCycles ?? null,
       },
       mode: "all",
       resolver: zodResolver(StorageActionSchema),
@@ -346,7 +351,7 @@ const StorageActionDialog: React.FC<StorageActionDialogProps> = ({
                         controllerName="thawCycles"
                         maxLength={10}
                         size={"md"}
-                        defaultValue={null}
+                        defaultValue={defaultThawCycles}
                         hideSteppers={true}
                         hideLabel={false}
                         allowEmpty={true}

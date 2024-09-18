@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "@carbon/react";
 import { useTranslation } from "react-i18next";
 import { closeOverlay, launchOverlay } from "../components/overlay/hook";
@@ -6,12 +6,16 @@ import { Sample } from "../api/types/sample";
 import StorageActionDialog from "./dialog/storage-action-dialog.component";
 import {
   TestRequestAction,
-  TestRequestActionTypeSampleRelease,
   TestResultActionTypeCheckOutSample,
 } from "../api/types/test-request";
 import { applyTestRequestAction } from "../api/test-request.resource";
 import { URL_API_SAMPLE } from "../config/urls";
 import { handleMutate } from "../api/swr-revalidation";
+import { getSampleActivity } from "../api/sample-activity.resource";
+import { FetchResponse } from "@openmrs/esm-framework";
+import { PageableResult } from "../api/types/pageable-result";
+import { SampleActivity } from "../api/types/sample-activity";
+import { ResourceRepresentation } from "../api/resource-filter-criteria";
 
 interface CheckOutSampleButtonProps {
   data: Sample;
@@ -30,13 +34,30 @@ const CheckOutSampleButton: React.FC<CheckOutSampleButtonProps> = ({
     testRequestAction.records = [data.uuid];
     return applyTestRequestAction(testRequestAction);
   };
+  const [isLoadingLastActity, setIsLoadingLastActivity] = useState(false);
 
   const onCloseDialog = () => {
     handleMutate(URL_API_SAMPLE);
     closeOverlay();
   };
 
-  const onCheckOutClick = () => {
+  const onCheckOutClick = async () => {
+    let defaultThawCycles: number = null;
+    try {
+      setIsLoadingLastActivity(true);
+      let response: FetchResponse<PageableResult<SampleActivity>> =
+        await getSampleActivity({
+          sample: data.uuid,
+          limit: 1,
+          v: ResourceRepresentation.Default,
+        });
+      if (response?.data?.results?.length > 0) {
+        defaultThawCycles = response?.data?.results[0].thawCycles;
+      }
+    } catch (e) {
+    } finally {
+      setIsLoadingLastActivity(false);
+    }
     launchOverlay(
       `${t("laboratoryCheckOutSample", "Check-Out Sample")}`,
       <StorageActionDialog
@@ -60,6 +81,7 @@ const CheckOutSampleButton: React.FC<CheckOutSampleButtonProps> = ({
         )}
         approvalDescription={""}
         readonlyStorage={true}
+        defaultThawCycles={defaultThawCycles}
       />
     );
   };
