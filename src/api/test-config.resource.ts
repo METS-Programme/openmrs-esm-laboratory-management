@@ -9,6 +9,7 @@ import {
   URL_API_TEST_CONFIG,
   URL_API_TEST_CONFIG_IMPORT,
   URL_API_TEST_REST_ATTACHMENT_UPLOAD,
+  URL_TEST_CONFIG_IMPORT,
 } from "../config/urls";
 import { customOpenMRSFetch } from "./custom-openmrs-fetch";
 
@@ -74,6 +75,15 @@ export function updateTestConfig(item: TestConfig) {
 }
 
 export async function uploadTestConfigurations(body: any) {
+  const abortController = new AbortController();
+  return customOpenMRSFetch(URL_TEST_CONFIG_IMPORT, {
+    method: "POST",
+    signal: abortController.signal,
+    body: body,
+  });
+}
+
+export async function attachTestResult(body: any) {
   const abortController = new AbortController();
   return customOpenMRSFetch(URL_API_TEST_REST_ATTACHMENT_UPLOAD, {
     method: "POST",

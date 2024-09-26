@@ -4,7 +4,7 @@ import { Button, InlineLoading, FileUploader } from "@carbon/react";
 import { useTranslation } from "react-i18next";
 import { showNotification, showSnackbar } from "@openmrs/esm-framework";
 import { TestConfigImportResult } from "../api/types/test-config";
-import { uploadTestConfigurations as attachTestResult } from "../api/test-config.resource";
+import { attachTestResult } from "../api/test-config.resource";
 import {
   URL_API_TEST_REQUEST,
   URL_API_TEST_REST_ATTACHMENT_DOWNLOAD,

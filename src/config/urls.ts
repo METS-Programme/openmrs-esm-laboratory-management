@@ -76,6 +76,7 @@ export const URL_LAB_EXTENSION_URL = (extenstion: string) =>
 export const URL_LAB_EXTENSION_URL_ABS = (extenstion: string) =>
   `${MODULE_BASE_URL}${URL_LAB_EXTENSION_URL(extenstion)}`;
 
+export const URL_TEST_CONFIG_IMPORT = `${restBaseUrl}/labmanagement/test-config-import`;
 export const URL_TEST_CONFIG_IMPORT_ERROR_FILE = (importSessionId: string) =>
   `${BASE_OPENMRS_APP_URL}${restBaseUrl}/labmanagement/test-config-import?id=${importSessionId}`;
 export const URL_IMPORT_TEMPLATE_FILE = `${BASE_OPENMRS_APP_URL}${restBaseUrl}/labmanagement/test-config-import-template`;
