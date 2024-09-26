@@ -393,9 +393,9 @@ const LabReportsList: React.FC = () => {
         requesteddate: formatDisplayDateTime(batchJob.dateCreated),
         parameters: parameterMap,
         owners: batchJob?.owners?.map((p, index) => (
-          <div
-            key={`${batchJob.uuid}-owner-${index}`}
-          >{`${p.ownerFamilyName} ${p.ownerGivenName}`}</div>
+          <div key={`${batchJob.uuid}-owner-${index}`}>{`${
+            p.ownerFamilyName ?? ""
+          } ${p.ownerGivenName ?? ""}`}</div>
         )),
         status: (
           <>
