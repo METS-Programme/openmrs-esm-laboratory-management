@@ -30,21 +30,11 @@ import React, { useMemo, useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { ResourceRepresentation } from "../api/resource-filter-criteria";
 import debounce from "lodash-es/debounce";
-import {
-  APP_LABMANAGEMENT_SAMPLES,
-  APP_LABMANAGEMENT_TESTREQUESTS,
-  TASK_LABMANAGEMENT_SAMPLES_COLLECT,
-  TASK_LABMANAGEMENT_SAMPLES_MUTATE,
-  TASK_LABMANAGEMENT_TESTREQUESTS_APPROVE,
-} from "../config/privileges";
-import {
-  TestRequestSelection,
-  useTestRequestResource,
-} from "../api/test-request.resource";
+import { APP_LABMANAGEMENT_SAMPLES } from "../config/privileges";
+import { useTestRequestResource } from "../api/test-request.resource";
 import styles from "../tests-ordered/laboratory-queue.scss";
 import {
   TestRequestItemStatusCancelled,
-  TestRequestItemStatusInProgress,
   TestRequestStatusType,
 } from "../api/types/test-request-item";
 import { useOrderDate } from "../hooks/useOrderDate";

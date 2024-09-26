@@ -6,11 +6,9 @@ import { Sample } from "../api/types/sample";
 import StorageActionDialog from "./dialog/storage-action-dialog.component";
 import {
   TestRequestAction,
-  TestRequestActionTypeSampleRelease,
   TestResultActionTypeArchiveSample,
 } from "../api/types/test-request";
 import { applyTestRequestAction } from "../api/test-request.resource";
-import { sample } from "rxjs/operators";
 import { handleMutate } from "../api/swr-revalidation";
 import { URL_API_SAMPLE } from "../config/urls";
 import { getSampleActivity } from "../api/sample-activity.resource";

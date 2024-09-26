@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./storage-form.component.scss";
 import {
   Button,
@@ -14,12 +14,9 @@ import {
 import { useTranslation } from "react-i18next";
 import { closeOverlay } from "../../components/overlay/hook";
 import {
-  ExtensionSlot,
   FetchResponse,
   showNotification,
   showSnackbar,
-  showToast,
-  useConfig,
   useLocations,
   useSession,
   userHasAccess,
@@ -28,14 +25,10 @@ import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Storage } from "../../api/types/storage";
 import { StorageFormData, storageSchema } from "./storage-validation-schema";
-import ConceptsSelector from "../../components/concepts-selector/concepts-selector.component";
 import ControlledTextInput from "../../components/controlled-text-input/controlled-text-input.component";
 import ControlledRadioButtonGroup from "../../components/controlled-radio-button-group/controlled-radio-button-group.component";
-import { Save } from "@carbon/react/icons";
 import { TASK_LABMANAGEMENT_STORAGE_MUTATE } from "../../config/privileges";
 import { createStorage, updateStorage } from "../../api/storage.resource";
-import ConceptMembersSelector from "../../components/concepts-selector/concept-members-selector.component";
-import { Config } from "../../config-schema";
 import { URL_API_STORAGE } from "../../config/urls";
 import { handleMutate } from "../../api/swr-revalidation";
 import { useLaboratoryConfig } from "../../hooks/useLaboratoryConfig";

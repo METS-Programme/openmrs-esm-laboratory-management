@@ -17,7 +17,6 @@ import {
   TableToolbarSearch,
   Tile,
   Tooltip,
-  InlineLoading,
 } from "@carbon/react";
 import { Edit } from "@carbon/react/icons";
 import { isDesktop, useSession, userHasAccess } from "@openmrs/esm-framework";

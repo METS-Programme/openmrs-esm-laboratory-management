@@ -3,12 +3,10 @@ import { Concept } from "../../api/types/concept/concept";
 import { Control, Controller, FieldValues } from "react-hook-form";
 import {
   ConceptFilterCriteria,
-  useConcepts,
   useLazyConcepts,
 } from "../../api/concept.resource";
 import { ComboBox, TextInputSkeleton } from "@carbon/react";
 import debounce from "lodash-es/debounce";
-import { ResourceRepresentation } from "../../api/resource-filter-criteria";
 
 interface ConceptsSelectorProps<T> {
   conceptUuid?: string;

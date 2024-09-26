@@ -1,7 +1,6 @@
 import {
   DataTable,
   Table,
-  TableBatchActions,
   TableBody,
   TableCell,
   TableContainer,
@@ -9,13 +8,9 @@ import {
   TableHeader,
   TableRow,
   Tile,
-  TabPanel,
   TableToolbar,
   TableToolbarContent,
   Tag,
-  Button,
-  TableSelectRow,
-  TableSelectAll,
 } from "@carbon/react";
 import { isDesktop } from "@openmrs/esm-framework";
 import React, { useMemo, useState } from "react";

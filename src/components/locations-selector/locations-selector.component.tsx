@@ -1,10 +1,7 @@
 import React, { ReactNode, useMemo, useState } from "react";
 import { OpenMRSLocation } from "../../api/types/location";
 import { Control, Controller, FieldValues } from "react-hook-form";
-import {
-  OpenMRSLocationFilter,
-  useLazyOpenMRSLocations,
-} from "../../api/location.resource";
+import { useLazyOpenMRSLocations } from "../../api/location.resource";
 import { ComboBox, TextInputSkeleton } from "@carbon/react";
 import debounce from "lodash-es/debounce";
 import { ResourceRepresentation } from "../../api/resource-filter-criteria";

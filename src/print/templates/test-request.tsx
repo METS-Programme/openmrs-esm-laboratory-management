@@ -1,6 +1,5 @@
 import { LoggedInUser } from "@openmrs/esm-framework";
 import { TestRequest } from "../../api/types/test-request";
-import { User } from "../../api/types/user";
 import { formatTestName } from "../../components/test-name";
 import { Config } from "../../config-schema";
 import { Patient } from "../../types";

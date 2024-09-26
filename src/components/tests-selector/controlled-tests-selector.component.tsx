@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect } from "react";
+import React, { ReactNode } from "react";
 import { Control, Controller, FieldValues } from "react-hook-form";
 import { ComboBox, TextInputSkeleton } from "@carbon/react";
 import { useTestConfigs } from "../../api/test-config.resource";

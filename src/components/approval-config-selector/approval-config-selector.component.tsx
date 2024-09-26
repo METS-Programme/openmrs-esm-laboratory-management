@@ -1,7 +1,5 @@
 import React, { ReactNode } from "react";
-import { Concept } from "../../api/types/concept/concept";
 import { Control, Controller, FieldValues } from "react-hook-form";
-import { useConcept } from "../../api/concept.resource";
 import { ComboBox, TextInputSkeleton } from "@carbon/react";
 import { ApprovalConfig } from "../../api/types/approval-config";
 import { useApprovalConfigs } from "../../api/approval-config.resource";

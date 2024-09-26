@@ -1,14 +1,8 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent } from "react";
 import { Control, Controller, FieldValues } from "react-hook-form";
-import { TextInput, Button, Tooltip } from "@carbon/react";
+import { TextInput, Button } from "@carbon/react";
 import { TextInputProps } from "@carbon/react/lib/components/TextInput/TextInput";
-import { Config } from "../../config-schema";
-import {
-  useConfig,
-  showNotification,
-  showSnackbar,
-  navigate,
-} from "@openmrs/esm-framework";
+import { showNotification, showSnackbar } from "@openmrs/esm-framework";
 import { Renew, Printer } from "@carbon/react/icons";
 import { useTranslation } from "react-i18next";
 import { extractErrorMessagesFromResponse } from "../../utils/functions";

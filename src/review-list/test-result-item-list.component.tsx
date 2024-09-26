@@ -1,7 +1,6 @@
 import {
   DataTable,
   Table,
-  TableBatchActions,
   TableBody,
   TableCell,
   TableContainer,
@@ -16,7 +15,6 @@ import {
   TableExpandedRow,
   Tag,
 } from "@carbon/react";
-import { CheckmarkOutline, MisuseOutline } from "@carbon/react/icons";
 import { isDesktop, navigate } from "@openmrs/esm-framework";
 import React, { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";

@@ -3,14 +3,12 @@ import React, {
   useCallback,
   useEffect,
   useMemo,
-  useRef,
   useState,
 } from "react";
 import { useTranslation } from "react-i18next";
 import {
   DataTable,
   DataTableSkeleton,
-  TabPanel,
   Pagination,
   Table,
   TableBody,
@@ -21,8 +19,6 @@ import {
   TableRow,
   TableToolbar,
   TableToolbarContent,
-  TableToolbarSearch,
-  Tile,
   Button,
   InlineLoading,
   TableToolbarMenu,
@@ -41,7 +37,6 @@ import {
 } from "@carbon/react";
 import {
   isDesktop,
-  restBaseUrl,
   showModal,
   useLocations,
   userHasAccess,

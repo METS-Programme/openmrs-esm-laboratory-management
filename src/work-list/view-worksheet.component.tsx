@@ -5,7 +5,7 @@ import EditWorksheet from "./edit-worksheet.component";
 
 import { DataTableSkeleton } from "@carbon/react";
 import { useTranslation } from "react-i18next";
-import { getWorksheet, getWorksheets } from "../api/worksheet.resource";
+import { getWorksheets } from "../api/worksheet.resource";
 import { ResourceRepresentation } from "../api/resource-filter-criteria";
 import { FetchResponse, showNotification } from "@openmrs/esm-framework";
 import { extractErrorMessagesFromResponse } from "../utils/functions";

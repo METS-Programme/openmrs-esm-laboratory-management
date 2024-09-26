@@ -8,7 +8,6 @@ import React, {
 import {
   showNotification,
   showSnackbar,
-  useConfig,
   useSession,
   FetchResponse,
   navigate,
@@ -32,7 +31,6 @@ import {
   TextInput,
 } from "@carbon/react";
 import { useTranslation } from "react-i18next";
-import { Config } from "../config-schema";
 import {
   DATE_PICKER_CONTROL_FORMAT,
   DATE_PICKER_FORMAT,
@@ -45,7 +43,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, Controller } from "react-hook-form";
 import ControlledTextArea from "../components/controlled-text-area/controlled-text-area.component";
 import {
-  MODULE_BASE_URL,
   URL_API_ENCOUNTER,
   URL_API_ORDER,
   URL_API_TEST_REQUEST,
@@ -66,7 +63,6 @@ import {
 } from "./worksheet-validation-schema";
 import { WorksheetItem } from "../api/types/worksheet-item";
 import { createWorksheet, updateWorksheet } from "../api/worksheet.resource";
-import { useConcept } from "../api/concept.resource";
 import { useSampleResource } from "../api/sample.resource";
 import UsersSelector from "../components/users-selector/users-selector.component";
 import { otherUser } from "../api/users.resource";
@@ -75,7 +71,7 @@ import TestsComboSelector from "../components/tests-selector/controlled-tests-se
 import { formatTestName } from "../components/test-name";
 import { ArrowShiftDown, CallsIncoming } from "@carbon/react/icons";
 import WorksheetSampleOptionsList from "./edit-left-worksheet-sample-options.component";
-import { Sample, SampleStatusTesting } from "../api/types/sample";
+import { SampleStatusTesting } from "../api/types/sample";
 import {
   TestRequestItem,
   TestRequestItemStatusInProgress,

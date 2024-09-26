@@ -1,7 +1,7 @@
 import React, { ReactNode, useEffect } from "react";
 import { Concept } from "../../api/types/concept/concept";
 import { Control, Controller, FieldValues } from "react-hook-form";
-import { useConcept, useLazyConcept } from "../../api/concept.resource";
+import { useLazyConcept } from "../../api/concept.resource";
 import { ComboBox, TextInputSkeleton } from "@carbon/react";
 
 interface ConceptMembersSelectorProps<T> {

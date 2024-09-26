@@ -1,4 +1,3 @@
-import { EmptyState } from "@openmrs/esm-patient-common-lib";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import LaboratoryActiveTestOrderResults from "./laboratory-active-test-order/laboratory-active-test-order-results.component";

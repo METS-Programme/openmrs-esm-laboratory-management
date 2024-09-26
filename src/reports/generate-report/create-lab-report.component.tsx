@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   Button,
   InlineLoading,
@@ -7,10 +7,7 @@ import {
   DatePicker,
   Select,
   SelectItem,
-  RadioButtonGroup,
-  RadioButton,
   Form,
-  Checkbox,
   TextInputSkeleton,
   NumberInput,
 } from "@carbon/react";
@@ -27,10 +24,8 @@ import { Controller, useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LabReportSchema, reportSchema } from "../report-validation-schema";
 import {
-  ConfigObject,
   showNotification,
   showSnackbar,
-  useConfig,
   useLocations,
 } from "@openmrs/esm-framework";
 import { Concept } from "../../api/types/concept/concept";
@@ -43,9 +38,8 @@ import {
   getReportStartDateLabel,
   getTesterLabel,
 } from "../../api/types/report-type";
-import { BatchJobTypeReport } from "../../api/types/batch-job";
 import { closeOverlay } from "../../components/overlay/hook";
-import { getConcept, useConcept } from "../../api/concept.resource";
+import { getConcept } from "../../api/concept.resource";
 import { useLaboratoryConfig } from "../../hooks/useLaboratoryConfig";
 import TestsComboSelector from "../../components/tests-selector/controlled-tests-selector.component";
 import { formatTestName } from "../../components/test-name";

@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from "react";
+import React from "react";
 import { Control, Controller, FieldValues } from "react-hook-form";
 import { Checkbox } from "@carbon/react";
 

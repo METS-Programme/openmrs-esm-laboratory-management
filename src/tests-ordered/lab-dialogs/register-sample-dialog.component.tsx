@@ -14,7 +14,6 @@ import {
   FetchResponse,
   showNotification,
   showSnackbar,
-  useConfig,
   userHasAccess,
   useSession,
 } from "@openmrs/esm-framework";
@@ -26,7 +25,6 @@ import { Controller, useForm } from "react-hook-form";
 import {
   Sample,
   SampleStatusCollection,
-  SampleStatusTesting,
   StorageStatusCheckedOut,
 } from "../../api/types/sample";
 import { TestRequest } from "../../api/types/test-request";
@@ -34,18 +32,15 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
   TestRequestItem,
   TestRequestItemStatusCancelled,
-  TestRequestItemStatusReferredOutLab,
   TestRequestItemStatusReferredOutProvider,
   TestRequestItemStatusRequestApproval,
   TestRequestItemStatusSampleCollection,
 } from "../../api/types/test-request-item";
-import { Config } from "../../config-schema";
 import styles from "./register-sample-dialog.scss";
 import ConceptMembersSelector from "../../components/concepts-selector/concept-members-selector.component";
 import ControlledAccessionNumber from "../../components/controlled-accession-number/controlled-accession-number.component";
 import ControlledTextInput from "../../components/controlled-text-input/controlled-text-input.component";
 import ReferrerLocationSelector from "../../components/referral-locations-selector/referral-locations-selector.component";
-import { boolean } from "zod";
 import { formatTestName } from "../../components/test-name";
 import ControlledNumberInput from "../../components/controlled-text-input/controlled-number-input.component";
 import { createSample, updateSample } from "../../api/sample.resource";

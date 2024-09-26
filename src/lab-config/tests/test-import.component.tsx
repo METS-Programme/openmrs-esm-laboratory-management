@@ -13,10 +13,7 @@ import {
 import { useTranslation } from "react-i18next";
 import { closeOverlay } from "../../components/overlay/hook";
 import { showNotification, showSnackbar } from "@openmrs/esm-framework";
-import {
-  TestConfig,
-  TestConfigImportResult,
-} from "../../api/types/test-config";
+import { TestConfigImportResult } from "../../api/types/test-config";
 import { uploadTestConfigurations } from "../../api/test-config.resource";
 import {
   URL_API_TEST_CONFIG,

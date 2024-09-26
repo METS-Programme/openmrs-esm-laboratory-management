@@ -17,15 +17,9 @@ import {
   TableToolbarSearch,
   Tile,
   Tooltip,
-  InlineLoading,
 } from "@carbon/react";
 import { Edit } from "@carbon/react/icons";
-import {
-  isDesktop,
-  usePagination,
-  useSession,
-  userHasAccess,
-} from "@openmrs/esm-framework";
+import { isDesktop, useSession, userHasAccess } from "@openmrs/esm-framework";
 import React, { useMemo, useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { ResourceRepresentation } from "../../api/resource-filter-criteria";

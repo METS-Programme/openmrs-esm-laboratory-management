@@ -16,8 +16,6 @@ import {
   TableToolbarContent,
   TableToolbarSearch,
   Tile,
-  Tooltip,
-  InlineLoading,
   TableExpandHeader,
   TableExpandRow,
   TableExpandedRow,

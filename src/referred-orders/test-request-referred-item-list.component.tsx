@@ -1,7 +1,6 @@
 import {
   DataTable,
   Table,
-  TableBatchActions,
   TableBody,
   TableCell,
   TableContainer,

@@ -1,7 +1,6 @@
 import {
   DataTable,
   Table,
-  TableBatchActions,
   TableBody,
   TableCell,
   TableContainer,
@@ -9,11 +8,9 @@ import {
   TableHeader,
   TableRow,
   Tile,
-  TabPanel,
   TableToolbar,
   TableToolbarContent,
   Tag,
-  Button,
   TableSelectRow,
   TableSelectAll,
 } from "@carbon/react";
@@ -27,7 +24,6 @@ import { formatDateTimeForDisplay } from "../utils/date-utils";
 import { TestRequestItem } from "../api/types/test-request-item";
 import { SampleReferenceDisplay } from "../components/sample-reference-display";
 import { formatTestName } from "../components/test-name";
-import { Edit } from "@carbon/react/icons";
 import EditSampleActionLink from "./edit-sample-action-link.component";
 import EditSampleActionButton from "./edit-sample-action-button.component";
 import DeleteSampleActionButton from "./delete-sample-action-button.component";

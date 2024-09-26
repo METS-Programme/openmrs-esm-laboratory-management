@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { LaboratoryHeader } from "./header/laboratory-header.component";
 import LaboratorySummaryTiles from "./summary-tiles/laboratory-summary-tiles.component";
 import LaboratoryOrdersList from "./tests-ordered/laboratory-tabs.component";
-import Overlay from "./components/overlay/overlay.component";
 import { ILaboratoryNavigationProps } from "./header/laboratory-navigation";
 import { userHasAccess, useSession } from "@openmrs/esm-framework";
 import { APP_LABMANAGEMENT_DASHBOARD } from "./config/privileges";

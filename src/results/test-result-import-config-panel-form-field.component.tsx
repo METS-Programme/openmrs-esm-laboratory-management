@@ -3,14 +3,13 @@ import styles from "./result-form.scss";
 import { TextInput, Select, SelectItem } from "@carbon/react";
 import { useTranslation } from "react-i18next";
 import { Controller, useFieldArray, useWatch } from "react-hook-form";
-import { printValueRange, ResultField } from "./result-field";
+import { ResultField } from "./result-field";
 import { Concept } from "../api/types/concept/concept";
 import {
   DO_NOT_FILL_VALUE,
   TestResultImportConfigMapping,
 } from "../api/types/test-result-import-config";
 import TestResultImportConfigPanelFieldAnswers from "./test-result-import-config-panel-field-answers.component";
-import { TestResultImportConfigFieldsFormData } from "../work-list/import-results/import-test-result-config.validation-schema";
 
 interface TestResultImportConfigPanelFormFieldProps<T> {
   control: any;

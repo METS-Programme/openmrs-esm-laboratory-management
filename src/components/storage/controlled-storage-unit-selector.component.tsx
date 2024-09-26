@@ -8,11 +8,7 @@ import React, {
 import { Storage, StorageUnit } from "../../api/types/storage";
 import { Control, Controller, FieldValues } from "react-hook-form";
 import { ComboBox, TextInputSkeleton } from "@carbon/react";
-import {
-  useLazyStorages,
-  useLazyStorageUnits,
-  useStorages,
-} from "../../api/storage.resource";
+import { useLazyStorageUnits } from "../../api/storage.resource";
 import { ResourceRepresentation } from "../../api/resource-filter-criteria";
 import debounce from "lodash-es/debounce";
 

@@ -27,7 +27,6 @@ import {
 } from "../api/types/test-request-item";
 import { SampleStatuses } from "../api/types/sample";
 import StorageSelector from "../components/storage/storage-selector.component";
-import PatientsSelector from "../components/patient-selector/patient-selector.component";
 import PatientsFilterSelector from "../components/patient-selector/patient-filter-selector.component";
 
 interface FilterTestsProps {

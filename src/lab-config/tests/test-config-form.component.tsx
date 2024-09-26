@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./test-config-form.component.scss";
 import {
   Button,
@@ -11,12 +11,9 @@ import {
 import { useTranslation } from "react-i18next";
 import { closeOverlay } from "../../components/overlay/hook";
 import {
-  ExtensionSlot,
   FetchResponse,
   showNotification,
   showSnackbar,
-  showToast,
-  useConfig,
   useSession,
   userHasAccess,
 } from "@openmrs/esm-framework";
@@ -31,9 +28,7 @@ import {
   testConfigSchema,
 } from "./test-config-validation-schema";
 import ConceptsSelector from "../../components/concepts-selector/concepts-selector.component";
-import ControlledTextInput from "../../components/controlled-text-input/controlled-text-input.component";
 import ControlledRadioButtonGroup from "../../components/controlled-radio-button-group/controlled-radio-button-group.component";
-import { Save } from "@carbon/react/icons";
 import { TASK_LABMANAGEMENT_TESTCONFIGURATIONS_MUTATE } from "../../config/privileges";
 import ApprovalFlowsSelector from "../../components/approval-flow-selector/approval-flow-selector.component";
 import {
@@ -41,7 +36,6 @@ import {
   updateTestConfig,
 } from "../../api/test-config.resource";
 import ConceptMembersSelector from "../../components/concepts-selector/concept-members-selector.component";
-import { Config } from "../../config-schema";
 import { URL_API_TEST_CONFIG } from "../../config/urls";
 import { handleMutate } from "../../api/swr-revalidation";
 import { useLaboratoryConfig } from "../../hooks/useLaboratoryConfig";

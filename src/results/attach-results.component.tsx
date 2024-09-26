@@ -2,19 +2,16 @@ import React, { useState } from "react";
 import styles from "./attach-results.component.scss";
 import { Button, InlineLoading, FileUploader } from "@carbon/react";
 import { useTranslation } from "react-i18next";
-import { closeOverlay } from "../components/overlay/hook";
 import { showNotification, showSnackbar } from "@openmrs/esm-framework";
 import { TestConfigImportResult } from "../api/types/test-config";
 import { uploadTestConfigurations as attachTestResult } from "../api/test-config.resource";
 import {
   URL_API_TEST_REQUEST,
   URL_API_TEST_REST_ATTACHMENT_DOWNLOAD,
-  URL_API_TEST_REST_ATTACHMENT_UPLOAD,
   URL_API_WORKSHEET,
 } from "../config/urls";
 import { handleMutate } from "../api/swr-revalidation";
 import { TestResult } from "../api/types/test-result";
-import { Worksheet } from "../api/types/worksheet";
 
 interface AttachResultsProps {
   mode: "Worksheet" | "TestResult";

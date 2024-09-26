@@ -1,7 +1,6 @@
 import {
   DataTable,
   Table,
-  TableBatchActions,
   TableBody,
   TableCell,
   TableContainer,
@@ -9,33 +8,22 @@ import {
   TableHeader,
   TableRow,
   Tile,
-  TabPanel,
-  TableToolbar,
-  TableToolbarContent,
   Tag,
   Button,
   TableSelectRow,
   TableSelectAll,
 } from "@carbon/react";
 import { isDesktop } from "@openmrs/esm-framework";
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import styles from "./work-list.scss";
-import { Sample } from "../api/types/sample";
-import {
-  formatAsPlainDateForTransfer,
-  formatDateTimeForDisplay,
-} from "../utils/date-utils";
-import { TestRequestItem } from "../api/types/test-request-item";
+import { formatAsPlainDateForTransfer } from "../utils/date-utils";
 import { SampleReferenceDisplay } from "../components/sample-reference-display";
 import { formatTestName } from "../components/test-name";
 import { ArrowRight } from "@carbon/react/icons";
 import {
   SampleAccessionNumberTagType,
-  SampleExternalReferenceTagType,
-  SampleProvidedReferenceTagType,
   WorksheetItem,
-  WorksheetItemStatusToTagType,
 } from "../api/types/worksheet-item";
 import { WorksheetSelectedItemOptions } from "../api/types/worksheet";
 import { URL_LAB_REQUESTS_ALL_ABS_REQUEST_NO } from "../config/urls";

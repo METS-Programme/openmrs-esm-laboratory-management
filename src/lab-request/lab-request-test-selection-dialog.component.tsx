@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import { TestConfig } from "../api/types/test-config";
 import styles from "./lab-request-test-selection-dialog.component.scss";
 import {

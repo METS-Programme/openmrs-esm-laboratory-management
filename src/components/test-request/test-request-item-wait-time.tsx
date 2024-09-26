@@ -28,17 +28,26 @@ const TestRequestItemWaitTime: React.FC<ITestRequestItemWaitTimeProps> = ({
     let startDate: Date = null;
     return getWaitTime(
       testRequestItem.samples?.reduce((x, y) => {
+        let requestDate =
+          testRequestItem?.requestApprovalDate ?? testRequestItem?.dateCreated;
         if (!x) {
           let date =
-            y?.collectionDate ??
-            testRequestItem?.requestApprovalDate ??
-            testRequestItem?.dateCreated;
+            y?.collectionDate && requestDate
+              ? dayjs(y?.collectionDate).toDate().getTime() <
+                dayjs(requestDate).toDate().getTime()
+                ? requestDate
+                : y?.collectionDate
+              : y?.collectionDate ?? requestDate;
+
           return date ? dayjs(date).toDate() : null;
         }
         let yDate =
-          y?.collectionDate ??
-          testRequestItem?.requestApprovalDate ??
-          testRequestItem?.dateCreated;
+          y?.collectionDate && requestDate
+            ? dayjs(y?.collectionDate).toDate().getTime() <
+              dayjs(requestDate).toDate().getTime()
+              ? requestDate
+              : y?.collectionDate
+            : y?.collectionDate ?? requestDate;
         if (!yDate) return x;
         let yDateValue = dayjs(yDate).toDate();
 

@@ -15,7 +15,6 @@ import {
   TableExpandRow,
   TableExpandedRow,
 } from "@carbon/react";
-import { CheckmarkOutline, MisuseOutline } from "@carbon/react/icons";
 import { isDesktop } from "@openmrs/esm-framework";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";

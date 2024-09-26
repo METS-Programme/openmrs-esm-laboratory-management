@@ -7,9 +7,8 @@ import React, {
 } from "react";
 import { Sample } from "../../api/types/sample";
 import { Control, Controller, FieldValues } from "react-hook-form";
-import { ComboBox, TextInputSkeleton } from "@carbon/react";
+import { ComboBox } from "@carbon/react";
 import { useLazySamples } from "../../api/sample.resource";
-import { ResourceRepresentation } from "../../api/resource-filter-criteria";
 import debounce from "lodash-es/debounce";
 
 interface ControlledSampleSelectorProps<T> {

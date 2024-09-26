@@ -1,5 +1,5 @@
 import { Button } from "@carbon/react";
-import React, { useCallback } from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
 import { DataEnrichmentAdd } from "@carbon/react/icons";
 import styles from "./add-lab-request-action-button.component.scss";

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { ILaboratoryNavigationProps } from "../header/laboratory-navigation";
 import { useTranslation } from "react-i18next";
 import LabReportsList from "./report-list/lab-reports-list.component";

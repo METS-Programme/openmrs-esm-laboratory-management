@@ -8,7 +8,6 @@ import {
   Checkbox,
   InlineLoading,
   Tag,
-  TextInput,
 } from "@carbon/react";
 import { useTranslation } from "react-i18next";
 import {
@@ -16,7 +15,6 @@ import {
   showNotification,
   showSnackbar,
 } from "@openmrs/esm-framework";
-import { SampleSchema } from "./register-sample-validation-schema";
 import { Controller, useForm } from "react-hook-form";
 import {
   Sample,
@@ -33,7 +31,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
   TestRequestItemStatusCancelled,
   TestRequestItemStatusReferredOutProvider,
-  TestRequestItemStatusRequestApproval,
   TestRequestItemStatusSampleCollection,
 } from "../../api/types/test-request-item";
 import styles from "./register-sample-dialog.scss";

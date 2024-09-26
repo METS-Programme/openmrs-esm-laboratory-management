@@ -5,8 +5,6 @@ import { Tab, Tabs, TabList, TabPanel, TabPanels } from "@carbon/react";
 import styles from "./config.component.scss";
 import { useSession, userHasAccess } from "@openmrs/esm-framework";
 import {
-  APP_LABMANAGEMENT_TESTCONFIGURATIONS,
-  APP_LABMANAGEMENT_APPROVALCONFIGURATIONS,
   APP_LABMANAGEMENT_STORAGE,
   MANAGE_GLOBAL_PROPERTIES,
 } from "../config/privileges";

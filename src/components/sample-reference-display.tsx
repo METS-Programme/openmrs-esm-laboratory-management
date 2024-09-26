@@ -2,8 +2,6 @@ import React from "react";
 import { decodeEncodedBarcode } from "../utils/barcode";
 import { Printer } from "@carbon/react/icons";
 import { Button } from "@carbon/react";
-import { useConfig } from "@openmrs/esm-framework";
-import { Config } from "../config-schema";
 import styles from "./sample-reference-display.scss";
 import { useLaboratoryConfig } from "../hooks/useLaboratoryConfig";
 export const SampleReferenceDisplay = ({

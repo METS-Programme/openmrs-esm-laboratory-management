@@ -1,13 +1,7 @@
 import React from "react";
-import {
-  RadioButton,
-  RadioButtonGroup,
-  Select,
-  SelectItem,
-} from "@carbon/react";
+import { Select, SelectItem } from "@carbon/react";
 import styles from "./filter-referrer-location.scss";
 import { useTranslation } from "react-i18next";
-import { boolean } from "zod";
 
 interface FilterReferrerLocationProps {
   filterType?: boolean | null;

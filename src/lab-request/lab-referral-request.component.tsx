@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import {
   showNotification,
   showSnackbar,
-  useConfig,
   useSession,
   FetchResponse,
   navigate,
@@ -23,7 +22,6 @@ import {
 } from "@carbon/react";
 import styles from "./lab-referral-request.component.scss";
 import { useTranslation } from "react-i18next";
-import { Config } from "../config-schema";
 import {
   DATE_PICKER_CONTROL_FORMAT,
   DATE_PICKER_FORMAT,
@@ -40,7 +38,6 @@ import {
 } from "./lab-referral-request-validation-schema";
 import ControlledTextArea from "../components/controlled-text-area/controlled-text-area.component";
 import { UrgencyTypes } from "../api/types/urgency";
-import ConceptMembersSelector from "../components/concepts-selector/concept-members-selector.component";
 import { createTestRequest } from "../api/test-request.resource";
 import {
   MODULE_BASE_URL,
@@ -56,7 +53,6 @@ import { extractErrorMessagesFromResponse } from "../utils/functions";
 import SampleItemsTable from "./lab-referral-request-samples.component";
 import ReferrerLocationSelector from "../components/referral-locations-selector/referral-locations-selector.component";
 import ControlledTextInput from "../components/controlled-text-input/controlled-text-input.component";
-import { useLaboratoryConfig } from "../hooks/useLaboratoryConfig";
 import { TASK_LABMANAGEMENT_REPOSITORY_MUTATE } from "../config/privileges";
 
 export interface LabReferralRequestProps extends ILaboratoryNavigationProps {

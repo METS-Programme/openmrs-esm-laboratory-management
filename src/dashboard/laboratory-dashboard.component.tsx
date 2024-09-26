@@ -12,7 +12,6 @@ import {
 import Laboratory from "../laboratory.component";
 import Configuration from "../lab-config/config.component";
 import ReferralRequest from "../lab-request/lab-referral-request.component";
-import { useLayoutType } from "@openmrs/esm-framework";
 import { ILaboratoryNavigation } from "../header/laboratory-navigation";
 import { DataTableSkeleton } from "@carbon/react";
 import { useLaboratoryConfig } from "../hooks/useLaboratoryConfig";

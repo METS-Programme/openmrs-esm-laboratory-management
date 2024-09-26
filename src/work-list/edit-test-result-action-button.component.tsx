@@ -2,7 +2,6 @@ import React from "react";
 import { Button } from "@carbon/react";
 import { useTranslation } from "react-i18next";
 import { Microscope } from "@carbon/react/icons";
-import { TestResult } from "../api/types/test-result";
 import { launchOverlay } from "../components/overlay/hook";
 import ResultForm from "../results/result-form.component";
 import { TestRequestItem } from "../api/types/test-request-item";

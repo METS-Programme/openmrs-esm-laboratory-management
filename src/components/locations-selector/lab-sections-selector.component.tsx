@@ -1,8 +1,5 @@
 import React, { ReactNode } from "react";
-import { ReferrerLocation } from "../../api/types/referrer-location";
-import { Control, Controller, FieldValues } from "react-hook-form";
-import { ComboBox, TextInputSkeleton, Select, SelectItem } from "@carbon/react";
-import { useReferrerLocations } from "../../api/referrer-location.resource";
+import { TextInputSkeleton, Select, SelectItem } from "@carbon/react";
 import { useLaboratoryConfig } from "../../hooks/useLaboratoryConfig";
 import { useLocations } from "@openmrs/esm-framework";
 
