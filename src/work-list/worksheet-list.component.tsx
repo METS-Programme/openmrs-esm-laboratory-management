@@ -198,25 +198,21 @@ const RightWorksheetList: React.FC<RightWorksheetListProps> = () => {
       ),
       remarks: entry.remarks ?? "",
       status: t(entry?.status),
-      actions:
-        canEditWorksheets && entry?.permission?.canEdit ? (
-          <Button
-            kind="ghost"
-            size="md"
-            onClick={() => onEditWorksheet(entry)}
-            iconDescription={t("editLaboratoryWorksheet", "Edit Worksheet")}
-            renderIcon={(props) => <Edit size={16} {...props} />}
-          ></Button>
-        ) : (
-          <Button
-            kind="ghost"
-            size="md"
-            onClick={() => onEditWorksheet(entry)}
-            iconDescription={t("editLaboratoryWorksheet", "Edit Worksheet")}
-            renderIcon={(props) => <View size={16} {...props} />}
-          ></Button>
-        ),
-
+      actions: (
+        <Button
+          kind="ghost"
+          size="md"
+          onClick={() => onEditWorksheet(entry)}
+          iconDescription={t("editLaboratoryWorksheet", "Edit Worksheet")}
+          renderIcon={(props) =>
+            canEditWorksheets && entry?.permission?.canEdit ? (
+              <Edit size={16} {...props} />
+            ) : (
+              <View size={16} {...props} />
+            )
+          }
+        ></Button>
+      ),
       detailsItems: entry?.worksheetItems ?? [],
     }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
