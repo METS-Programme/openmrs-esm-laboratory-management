@@ -1,7 +1,6 @@
 import {
   DataTable,
   Table,
-  TableBatchActions,
   TableBody,
   TableCell,
   TableContainer,
@@ -12,7 +11,6 @@ import {
   TableSelectAll,
   TableSelectRow,
 } from "@carbon/react";
-import { CheckmarkOutline, MisuseOutline } from "@carbon/react/icons";
 import { isDesktop } from "@openmrs/esm-framework";
 import React from "react";
 import { useTranslation } from "react-i18next";

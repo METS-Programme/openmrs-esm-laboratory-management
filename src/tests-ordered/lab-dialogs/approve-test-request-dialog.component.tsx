@@ -6,7 +6,6 @@ import {
   ModalBody,
   ModalFooter,
   ModalHeader,
-  TextArea,
   InlineLoading,
 } from "@carbon/react";
 import { useTranslation } from "react-i18next";

@@ -1,6 +1,5 @@
 import {
   DataTable,
-  DataTableSkeleton,
   Pagination,
   Table,
   TableBatchActions,
@@ -11,8 +10,6 @@ import {
   TableHeader,
   TableRow,
   TableToolbar,
-  TableToolbarContent,
-  TableToolbarSearch,
   Tile,
   TableBatchAction,
   TableExpandHeader,
@@ -25,50 +22,33 @@ import {
   MultiSelect,
 } from "@carbon/react";
 import { MisuseOutline } from "@carbon/react/icons";
-import {
-  isDesktop,
-  showModal,
-  useSession,
-  userHasAccess,
-} from "@openmrs/esm-framework";
+import { isDesktop, useSession, userHasAccess } from "@openmrs/esm-framework";
 import React, { useMemo, useState, useEffect, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { ResourceRepresentation } from "../../api/resource-filter-criteria";
 import debounce from "lodash-es/debounce";
 import {
   TASK_LABMANAGEMENT_REPOSITORY_MUTATE,
-  TASK_LABMANAGEMENT_TESTRESULTS_APPROVE,
   TASK_LABMANAGEMENT_TESTRESULTS_MUTATE,
 } from "../../config/privileges";
 import { applyTestRequestAction } from "../../api/test-request.resource";
 import { useSampleResource } from "../../api/sample.resource";
 import styles from "../../tests-ordered/laboratory-queue.scss";
-import { useOrderDate } from "../../hooks/useOrderDate";
 
 import { formatDateTimeForDisplay } from "../../utils/date-utils";
 import TableSelectRow from "../../components/carbon/TableSelectRow";
-import {
-  ApprovalActionApproved,
-  ApprovalActionRejected,
-} from "../../api/types/approval-action";
 import { handleMutate } from "../../api/swr-revalidation";
-import { URL_API_SAMPLE, URL_API_TEST_REQUEST } from "../../config/urls";
+import { URL_API_SAMPLE } from "../../config/urls";
 import FilterLaboratoryTests from "../../tests-ordered/filter-laboratory-tests.component";
 import {
   TestRequestAction,
   TestResultActionTypeDisposeSample,
-  TestResultActionTypeResultApprove,
 } from "../../api/types/test-request";
 import { SampleReferenceDisplay } from "../../components/sample-reference-display";
-import {
-  SampleSelection,
-  SampleStatusArchived,
-  StorageStatuses,
-} from "../../api/types/sample";
+import { SampleSelection, StorageStatuses } from "../../api/types/sample";
 import SampleTestItemList from "./sample-test-item-list.component";
 import StorageSelector from "../../components/storage/storage-selector.component";
 import LabSectionSelector from "../../components/locations-selector/lab-sections-selector.component";
-import { TestRequestItemStatuses } from "../../api/types/test-request-item";
 import { useLaboratoryConfig } from "../../hooks/useLaboratoryConfig";
 import ConceptMembersFilterSelector from "../../components/concepts-selector/concept-members-filter-selector.component";
 import ArchiveSampleButton from "../archive-sample-button.component";
@@ -76,10 +56,7 @@ import CheckOutSampleButton from "../checkout-sample-button.component";
 import SampleActivityList from "./sample-activity-list.component";
 import { closeOverlay, launchOverlay } from "../../components/overlay/hook";
 import StorageActionDialog from "../dialog/storage-action-dialog.component";
-import {
-  getEntityName,
-  getSampleEntityName,
-} from "../../components/test-request/entity-name";
+import { getSampleEntityName } from "../../components/test-request/entity-name";
 
 interface SampleStorageListProps {
   from?: string;

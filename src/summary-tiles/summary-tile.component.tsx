@@ -1,7 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { Tile, Button } from "@carbon/react";
-import { ArrowRight } from "@carbon/react/icons";
+import { Tile } from "@carbon/react";
 import styles from "./summary-tile.scss";
 
 export interface KeyPerformanceIndicator {

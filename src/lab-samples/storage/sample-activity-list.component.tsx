@@ -10,7 +10,7 @@ import {
   Tile,
   DataTableSkeleton,
 } from "@carbon/react";
-import { formatDate, isDesktop, parseDate } from "@openmrs/esm-framework";
+import { isDesktop } from "@openmrs/esm-framework";
 import React, { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import styles from "../../tests-ordered/laboratory-queue.scss";

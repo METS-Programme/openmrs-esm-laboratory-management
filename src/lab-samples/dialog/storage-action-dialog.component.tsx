@@ -5,7 +5,6 @@ import {
   Form,
   ModalBody,
   ModalFooter,
-  ModalHeader,
   InlineLoading,
   DatePicker,
   DatePickerInput,

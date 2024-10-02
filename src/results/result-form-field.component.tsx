@@ -3,7 +3,6 @@ import styles from "./result-form.scss";
 import { TextInput, Select, SelectItem } from "@carbon/react";
 import { useTranslation } from "react-i18next";
 import { Controller } from "react-hook-form";
-import { min } from "rxjs/operators";
 import { Concept } from "@openmrs/esm-api/src/types";
 import { isCoded, isPanel, isTextOrNumeric } from "./result-field";
 

@@ -2,7 +2,7 @@ import React, { ReactNode, useEffect, useMemo, useState } from "react";
 import { Storage } from "../../api/types/storage";
 import { Control, Controller, FieldValues } from "react-hook-form";
 import { ComboBox, TextInputSkeleton } from "@carbon/react";
-import { useLazyStorages, useStorages } from "../../api/storage.resource";
+import { useLazyStorages } from "../../api/storage.resource";
 import { ResourceRepresentation } from "../../api/resource-filter-criteria";
 import debounce from "lodash-es/debounce";
 

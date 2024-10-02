@@ -1,5 +1,4 @@
 import React from "react";
-import { Tile } from "@carbon/react";
 import { TestResult } from "../../api/types/test-result";
 import styles from "./test-result-info.scss";
 import { useTranslation } from "react-i18next";

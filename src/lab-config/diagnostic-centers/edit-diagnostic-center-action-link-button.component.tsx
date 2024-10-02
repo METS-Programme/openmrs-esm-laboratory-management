@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react";
 import { Button, InlineLoading } from "@carbon/react";
 import { useTranslation } from "react-i18next";
-import { URL_LOCATIONS_EDIT, URL_LOCATIONS_NEW } from "../../config/urls";
+import { URL_LOCATIONS_EDIT } from "../../config/urls";
 import { FetchResponse, showNotification } from "@openmrs/esm-framework";
 import { getLabLocation } from "../../api/location.resource";
 import { ResourceRepresentation } from "../../api/resource-filter-criteria";

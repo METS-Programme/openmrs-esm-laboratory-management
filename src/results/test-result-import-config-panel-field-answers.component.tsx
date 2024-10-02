@@ -1,9 +1,9 @@
 import React, { ChangeEvent } from "react";
 import styles from "./result-form.scss";
-import { TextInput, Select, SelectItem } from "@carbon/react";
+import { TextInput } from "@carbon/react";
 import { useTranslation } from "react-i18next";
 import { Controller, useFieldArray } from "react-hook-form";
-import { printValueRange, ResultField } from "./result-field";
+import { ResultField } from "./result-field";
 import { Concept } from "../api/types/concept/concept";
 import { TestResultImportConfigMapping } from "../api/types/test-result-import-config";
 

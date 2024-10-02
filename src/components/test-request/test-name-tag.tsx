@@ -7,7 +7,7 @@ import {
   TestRequestItemStatusSampleCollection,
 } from "../../api/types/test-request-item";
 import { formatTestName } from "../test-name";
-import { Tag, Tile } from "@carbon/react";
+import { Tag } from "@carbon/react";
 
 export interface ITestNameTagProps {
   testRequestItem: TestRequestItem;

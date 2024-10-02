@@ -1,27 +1,17 @@
-import React, { useMemo, useState, useCallback } from "react";
+import React from "react";
 import { TrashCan } from "@carbon/react/icons";
 import {
-  DataTable,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableHeader,
-  TableRow,
   Button,
   TextInputSkeleton,
   DataTableSkeleton,
   Tile,
-  Checkbox,
 } from "@carbon/react";
 import { DiagonisticCenterTests, Sample } from "../api/types/sample";
-import { isDesktop, useConfig, useLocations } from "@openmrs/esm-framework";
+import { useLocations } from "@openmrs/esm-framework";
 import { useTestConfigs } from "../api/test-config.resource";
 import { useConcept } from "../api/concept.resource";
-import { Config } from "../config-schema";
 import ConceptMembersSelector from "../components/concepts-selector/concept-members-selector.component";
-import { Control, Controller, useFieldArray } from "react-hook-form";
+import { Control, useFieldArray } from "react-hook-form";
 import { LabRequest } from "../api/types/lab-request";
 import ControlledTextInput from "../components/controlled-text-input/controlled-text-input.component";
 import ControlledAccessionNumber from "../components/controlled-accession-number/controlled-accession-number.component";

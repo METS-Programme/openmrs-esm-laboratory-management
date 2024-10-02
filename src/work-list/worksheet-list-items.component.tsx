@@ -50,7 +50,6 @@ import {
   ResultField,
 } from "../results/result-field";
 
-import { boolean, date, number } from "zod";
 import InlineResultFormField from "../results/inline-result-form-field.component";
 import dayjs from "dayjs";
 import ControlledTextArea from "../components/controlled-text-area/controlled-text-area.component";
@@ -74,10 +73,7 @@ import {
   TestResultImportConfigMappingHeaders,
 } from "../api/types/test-result-import-config";
 import Decimal from "decimal.js";
-import {
-  getEntityName,
-  getWorksheetItemEntityName,
-} from "../components/test-request/entity-name";
+import { getWorksheetItemEntityName } from "../components/test-request/entity-name";
 import AttachResults from "../results/attach-results.component";
 
 interface WorksheetListItemsProps {

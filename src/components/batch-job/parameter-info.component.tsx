@@ -1,10 +1,7 @@
 import React from "react";
 import { Tile } from "@carbon/react";
 import styles from "./parameter-info.component.scss";
-import {
-  formatDateForDisplay,
-  formatDateTimeForDisplay,
-} from "../../utils/date-utils";
+import { formatDateTimeForDisplay } from "../../utils/date-utils";
 import { useTranslation } from "react-i18next";
 import { BatchJob, BatchJobStatusCancelled } from "../../api/types/batch-job";
 

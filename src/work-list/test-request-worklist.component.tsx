@@ -18,7 +18,6 @@ import {
   TableExpandedRow,
   ProgressBar,
   Tag,
-  Button,
 } from "@carbon/react";
 import {
   formatDate,
@@ -46,16 +45,12 @@ import {
   getDescriptiveStatus,
   TestRequestItemStatusCancelled,
   TestRequestItemStatusInProgress,
-  TestRequestItemStatusReferredOutProvider,
-  TestRequestItemStatusSampleCollection,
 } from "../api/types/test-request-item";
 import { useOrderDate } from "../hooks/useOrderDate";
 import { formatTestName } from "../components/test-name";
-import TestRequestItemList from "../tests-ordered/test-request-item-list.component";
 import { handleMutate } from "../api/swr-revalidation";
 import {
   URL_API_TEST_REQUEST,
-  URL_LAB_WORKSHEET_ABS,
   URL_LAB_WORKSHEET_VIEW_ABS,
 } from "../config/urls";
 import FilterLaboratoryTests from "../tests-ordered/filter-laboratory-tests.component";
@@ -63,7 +58,6 @@ import TestRequestInfo from "../components/test-request/text-request-info.compon
 import TestRequestSampleList from "../tests-ordered/test-request-sample-list.component";
 import RejectTestItemButton from "../reject-order/reject-test-item-button.component";
 import { SampleReferenceDisplay } from "../components/sample-reference-display";
-import { Microscope } from "@carbon/react/icons";
 import EditTestResultButton from "./edit-test-result-action-button.component";
 import TestRequestWorklistItemList from "./test-request-worklist-item-list.component";
 import PrintTestRequestButton from "../print/print-test-request-action-button.component";

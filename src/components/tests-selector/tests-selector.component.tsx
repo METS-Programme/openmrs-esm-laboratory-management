@@ -2,15 +2,11 @@ import React, {
   ChangeEvent,
   ReactNode,
   useCallback,
-  useEffect,
   useMemo,
   useState,
 } from "react";
 import { Control, Controller, FieldValues } from "react-hook-form";
-import {
-  ApprovalFlowFilter,
-  useLazyApprovalFlows,
-} from "../../api/approval-flow.resource";
+import { useLazyApprovalFlows } from "../../api/approval-flow.resource";
 import {
   TextInputSkeleton,
   Select,
@@ -18,7 +14,6 @@ import {
   Button,
   FilterableMultiSelect,
 } from "@carbon/react";
-import debounce from "lodash-es/debounce";
 import { TestConfig } from "../../api/types/test-config";
 import styles from "./tests-selector.scss";
 import { useTranslation } from "react-i18next";

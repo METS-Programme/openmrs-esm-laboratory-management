@@ -12,7 +12,6 @@ import { TestRequest } from "../api/types/test-request";
 import { getTestRequests } from "../api/test-request.resource";
 import { Patient } from "../types";
 import { getPatient } from "../api/patient.resource";
-import { User } from "../api/types/user";
 import { PrintTestResult } from "./templates/test-result";
 
 export const printTransaction = async (

@@ -1,6 +1,4 @@
 import {
-  Button,
-  TabPanel,
   DataTable,
   DataTableSkeleton,
   Pagination,
@@ -16,23 +14,15 @@ import {
   TableToolbarContent,
   TableToolbarSearch,
   Tile,
-  Tooltip,
-  InlineLoading,
 } from "@carbon/react";
-import { Edit } from "@carbon/react/icons";
-import { isDesktop, useSession, userHasAccess } from "@openmrs/esm-framework";
-import React, { useMemo, useState, useEffect } from "react";
+import { isDesktop, useSession } from "@openmrs/esm-framework";
+import React, { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ResourceRepresentation } from "../../api/resource-filter-criteria";
-import AddStorageActionButton from "./add-storage-action-button.component";
 
-import { useStorageResource, useStorageUnitResource } from "./storage.resource";
+import { useStorageUnitResource } from "./storage.resource";
 import styles from "../../tests-ordered/laboratory-queue.scss";
-import EditStorageActionsMenu from "./edit-storage-action-button.component";
-import { launchOverlay } from "../../components/overlay/hook";
 import debounce from "lodash-es/debounce";
-import StorageForm from "./storage-form.component";
-import { TASK_LABMANAGEMENT_STORAGE_MUTATE } from "../../config/privileges";
 
 interface StorageUnitListProps {
   storageUuid?: string;

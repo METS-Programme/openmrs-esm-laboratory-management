@@ -10,7 +10,6 @@ import { TestRequestItem } from "../api/types/test-request-item";
 import { formatTestName } from "../components/test-name";
 import { applyTestRequestAction } from "../api/test-request.resource";
 import { TestRequestActionTypeSampleRelease } from "../api/types/test-request";
-import { record } from "zod";
 
 const ReleaseSamplesForTestingActionButton: React.FC<{
   sampleIds: { [key: string]: boolean };

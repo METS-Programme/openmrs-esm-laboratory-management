@@ -1,10 +1,6 @@
 import React, { ReactNode, useMemo, useState } from "react";
 import { Patient } from "../../api/types/patient";
-import { Control, Controller, FieldValues } from "react-hook-form";
-import {
-  PatientFilterCriteria,
-  useLazyPatients,
-} from "../../api/patient.resource";
+import { useLazyPatients } from "../../api/patient.resource";
 import { ComboBox, TextInputSkeleton } from "@carbon/react";
 import debounce from "lodash-es/debounce";
 

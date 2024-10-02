@@ -24,7 +24,6 @@ import {
   isDesktop,
   navigate,
   parseDate,
-  useSession,
 } from "@openmrs/esm-framework";
 import React, { useMemo, useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";

@@ -15,7 +15,6 @@ import {
   FetchResponse,
   showNotification,
   showSnackbar,
-  useConfig,
   useSession,
   userHasAccess,
 } from "@openmrs/esm-framework";
@@ -38,7 +37,6 @@ import {
   updateReferrerLocation,
 } from "../../api/referrer-location.resource";
 import ConceptMembersSelector from "../../components/concepts-selector/concept-members-selector.component";
-import { Config } from "../../config-schema";
 import { URL_API_REFERRER_LOCATION } from "../../config/urls";
 import { handleMutate } from "../../api/swr-revalidation";
 import PatientHeaderInfo from "../../components/patient-header-info/patient-header-info.component";

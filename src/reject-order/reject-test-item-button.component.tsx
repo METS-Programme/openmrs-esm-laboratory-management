@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import { SubtractAlt, TrashCan } from "@carbon/react/icons";
+import { TrashCan } from "@carbon/react/icons";
 
 import { Button } from "@carbon/react";
 import { showModal } from "@openmrs/esm-framework";

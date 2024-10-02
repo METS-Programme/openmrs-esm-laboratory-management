@@ -3,7 +3,7 @@ import React, { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { showModal } from "@openmrs/esm-framework";
 import { TrashCan } from "@carbon/react/icons";
-import { URL_API_LOCATION, URL_API_STORAGE } from "../../config/urls";
+import { URL_API_STORAGE } from "../../config/urls";
 import { handleMutate } from "../../api/swr-revalidation";
 import { deleteStorage } from "../../api/storage.resource";
 

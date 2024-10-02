@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState } from "react";
 import {
   DataTable,
   Pagination,
@@ -14,7 +14,6 @@ import {
   TableToolbarContent,
   Layer,
   TableToolbarSearch,
-  Dropdown,
   DatePicker,
   DatePickerInput,
 } from "@carbon/react";

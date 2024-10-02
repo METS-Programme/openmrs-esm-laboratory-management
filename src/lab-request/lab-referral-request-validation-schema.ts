@@ -1,4 +1,4 @@
-import { boolean, z } from "zod";
+import { z } from "zod";
 import { DiagonisticCenterTests } from "../api/types/sample";
 import { UrgencyTypes } from "../api/types/urgency";
 

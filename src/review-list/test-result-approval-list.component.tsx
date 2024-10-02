@@ -1,16 +1,4 @@
-import {
-  DataTable,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableHeader,
-  TableRow,
-  Tile,
-} from "@carbon/react";
-import { isDesktop } from "@openmrs/esm-framework";
-import React, { useMemo } from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
 import styles from "../tests-ordered/laboratory-queue.scss";
 import { formatDateTimeForDisplay } from "../utils/date-utils";

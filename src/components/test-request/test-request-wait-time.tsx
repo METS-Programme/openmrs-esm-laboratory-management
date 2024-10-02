@@ -33,19 +33,27 @@ const TestRequestWaitTime: React.FC<ITestRequestWaitTimeProps> = ({
           return currentDateRange;
         }
         let startDate: Date = null;
+        let requestDate =
+          testRequestItem?.requestApprovalDate ?? testRequestItem?.dateCreated;
         startDate = testRequestItem.samples?.reduce((x, y) => {
           if (!x) {
             let xDateValue =
-              y?.collectionDate ??
-              testRequestItem?.requestApprovalDate ??
-              testRequestItem?.dateCreated;
+              y?.collectionDate && requestDate
+                ? dayjs(y?.collectionDate).toDate().getTime() <
+                  dayjs(requestDate).toDate().getTime()
+                  ? requestDate
+                  : y?.collectionDate
+                : y?.collectionDate ?? requestDate;
             let dateToReturn = xDateValue ? dayjs(xDateValue).toDate() : null;
             return dateToReturn;
           }
           let yDate =
-            y?.collectionDate ??
-            testRequestItem?.requestApprovalDate ??
-            testRequestItem?.dateCreated;
+            y?.collectionDate && requestDate
+              ? dayjs(y?.collectionDate).toDate().getTime() <
+                dayjs(requestDate).toDate().getTime()
+                ? requestDate
+                : y?.collectionDate
+              : y?.collectionDate ?? requestDate;
           if (!yDate) return x;
           let yDateValue = dayjs(yDate).toDate();
           return yDateValue.getTime() < x.getTime() ? yDateValue : x;
@@ -74,10 +82,9 @@ const TestRequestWaitTime: React.FC<ITestRequestWaitTimeProps> = ({
                 : completeDateValue;
           } else {
             currentDateRange.maxCompletedDate = completeDateValue;
-            if (!startDate) {
-              currentDateRange.itemHasStartButNoEnd = true;
-            }
           }
+        } else {
+          currentDateRange.itemHasStartButNoEnd = true;
         }
 
         return currentDateRange;

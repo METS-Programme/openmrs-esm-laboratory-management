@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { SideNavItem } from "./side-nav-item";
-import { SideNav, SideNavItems, SideNavLink } from "@carbon/react";
+import { SideNav, SideNavItems } from "@carbon/react";
 import styles from "./side-nav.scss";
-import { navigate } from "@openmrs/esm-framework";
 import SideNavLinkItem from "./side-nav-link.component";
-import { useLocation, useParams } from "react-router-dom";
 
 interface SideNavProps {
   tabs: SideNavItem[];

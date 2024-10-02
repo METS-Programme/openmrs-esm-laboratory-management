@@ -34,8 +34,6 @@ import debounce from "lodash-es/debounce";
 import {
   TASK_LABMANAGEMENT_SAMPLES_COLLECT,
   TASK_LABMANAGEMENT_SAMPLES_MUTATE,
-  TASK_LABMANAGEMENT_TESTREQUESTS_APPROVE,
-  TASK_LABMANAGEMENT_TESTRESULTS_APPROVE,
 } from "../config/privileges";
 import {
   TestRequestSelection,
@@ -45,8 +43,6 @@ import styles from "../tests-ordered/laboratory-queue.scss";
 import {
   getDescriptiveStatus,
   TestRequestItemStatusCancelled,
-  TestRequestItemStatusReferredOutLab,
-  TestRequestItemStatusReferredOutProvider,
 } from "../api/types/test-request-item";
 import { useOrderDate } from "../hooks/useOrderDate";
 import { formatTestName } from "../components/test-name";

@@ -14,11 +14,9 @@ import {
   TableSelectAll,
 } from "@carbon/react";
 import { isDesktop } from "@openmrs/esm-framework";
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import styles from "./work-list.scss";
-import { Sample } from "../api/types/sample";
-import { TestRequestItem } from "../api/types/test-request-item";
 import { SampleReferenceDisplay } from "../components/sample-reference-display";
 import { formatTestName } from "../components/test-name";
 import { ArrowLeft } from "@carbon/react/icons";

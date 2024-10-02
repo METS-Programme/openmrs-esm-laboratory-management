@@ -3,7 +3,7 @@ import {
   useStorages,
   useStorageUnits,
 } from "../../api/storage.resource";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ResourceRepresentation } from "../../api/resource-filter-criteria";
 import { usePagination } from "@openmrs/esm-framework";

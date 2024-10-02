@@ -1,5 +1,4 @@
 import React from "react";
-import { ConfigurableLink } from "@openmrs/esm-framework";
 import { TestRequest } from "../../api/types/test-request";
 import { URL_PATIENT_CHART_LAB } from "../../config/urls";
 import { WorksheetItem } from "../../api/types/worksheet-item";

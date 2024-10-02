@@ -1,7 +1,6 @@
 import { Button } from "@carbon/react";
 import React, { useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { showModal } from "@openmrs/esm-framework";
 import { launchOverlay } from "../../components/overlay/hook";
 import TestImport from "./test-import.component";
 

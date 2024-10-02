@@ -1,4 +1,4 @@
-import { boolean, z } from "zod";
+import { z } from "zod";
 import { otherUser } from "../api/users.resource";
 
 export const WorksheetItemSchema = z.object({
