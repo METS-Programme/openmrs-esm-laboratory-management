@@ -138,7 +138,7 @@ const EditWorksheet: React.FC<EditWorksheetProps> = ({ model }) => {
     includeTestResultId: true,
     tests: true,
     allTests: false,
-    limit: 500,
+    limit: 100,
     forWorksheet: true,
   });
 
