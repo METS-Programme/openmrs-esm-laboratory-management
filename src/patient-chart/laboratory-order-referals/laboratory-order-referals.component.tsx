@@ -183,9 +183,19 @@ const LaboratoryOrderReferalResults: React.FC<
           orderDate: formatDateTimeForDisplay(entry.dateCreated),
           orders: (
             <>
-              {entry?.tests?.map((order) => {
-                return <TestNameTag testRequestItem={order} />;
-              })}
+              {entry?.tests
+                ?.sort((x, y) =>
+                  x.requestApprovalRemarks && y.requestApprovalRemarks
+                    ? 0
+                    : x.requestApprovalRemarks
+                    ? 1
+                    : -1
+                )
+                .map((order) => {
+                  return (
+                    <TestNameTag testRequestItem={order} showRemarks={true} />
+                  );
+                })}
             </>
           ),
 
