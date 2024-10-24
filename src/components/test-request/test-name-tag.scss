@@ -1,0 +1,20 @@
+.tagWithRemarks{
+    display: flex;
+    flex-direction: row;
+    column-gap: 0.5rem;
+    justify-content: flex-start;
+    align-items: center;
+
+    :global(.cds--tag){
+        min-width: fit-content;
+    }
+
+    .approvalRemarks{
+        font-size: 95%;
+        margin: .25rem;
+        padding-inline: 0.5rem;
+        border-left: 1px solid #e0e0e0;
+        padding-left: 0.85rem;
+      }
+}
+

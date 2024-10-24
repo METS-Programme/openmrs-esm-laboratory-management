@@ -8,9 +8,11 @@ import {
 } from "../../api/types/test-request-item";
 import { formatTestName } from "../test-name";
 import { Tag } from "@carbon/react";
+import styles from "./test-name-tag.scss";
 
 export interface ITestNameTagProps {
   testRequestItem: TestRequestItem;
+  showRemarks?: boolean;
 }
 
 const getTagStyles = (testRequestItem: TestRequestItem) => {
@@ -40,14 +42,31 @@ const getTagStyles = (testRequestItem: TestRequestItem) => {
   };
 };
 
-const TestNameTag: React.FC<ITestNameTagProps> = ({ testRequestItem }) => {
-  return (
+const TestNameTag: React.FC<ITestNameTagProps> = ({
+  testRequestItem,
+  showRemarks,
+}) => {
+  const tagItem = (
     <Tag style={getTagStyles(testRequestItem)} role="tooltip">
       {formatTestName(
         testRequestItem?.testName,
         testRequestItem?.testShortName
       )}
     </Tag>
+  );
+  return (
+    <>
+      {showRemarks && testRequestItem?.requestApprovalRemarks ? (
+        <div className={styles.tagWithRemarks}>
+          {tagItem}
+          <div className={styles.approvalRemarks}>
+            {testRequestItem.requestApprovalRemarks}
+          </div>
+        </div>
+      ) : (
+        tagItem
+      )}
+    </>
   );
 };
 
