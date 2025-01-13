@@ -8283,9 +8283,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ugandaemr/esm-laboratory-app@workspace:.":
+"@ugandaemr/esm-laboratory-management-app@workspace:.":
   version: 0.0.0-use.local
-  resolution: "@ugandaemr/esm-laboratory-app@workspace:."
+  resolution: "@ugandaemr/esm-laboratory-management-app@workspace:."
   dependencies:
     "@carbon/react": "npm:^1.14.0"
     "@hookform/resolvers": "npm:^3.3.4"
